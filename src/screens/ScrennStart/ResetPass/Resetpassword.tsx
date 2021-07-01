@@ -35,6 +35,9 @@ const ResetPass = ({navigation}: any) => {
           }}
           onSubmit={(values) => {
             console.log(values);
+            navigate.navigate('VerifyAccount', {
+              numberphone: numberphone,
+            });
           }}
           validationSchema={Validation}
           validateOnMount={true}>
