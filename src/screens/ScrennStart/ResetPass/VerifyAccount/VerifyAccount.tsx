@@ -5,11 +5,22 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Avatar, Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import stylesGlobal from '../../../../assets/Css/cssGlobal.css';
-const VerifyAccount = ({route,navigation}: any) => {
+import FormField from '../../../../components/FormField/FormFieldComponent';
+import * as Yup from 'yup';
+import {Formik} from 'formik';
+const VerifyAccount = ({route, navigation}: any) => {
   const navigate = useNavigation();
   const [secureTextEntry, setsecureTextEntry] = useState(true);
   // console.log(navigation);
-  const { numberphone } = route.params;
+  const {numberphone} = route.params;
+  console.log(route.params);
+  
+  const Validation = Yup.object().shape({
+    code: Yup.string()
+      .max(6, 'Nhập mã 6 số!')
+      .min(6, 'Nhập mã 6 số!')
+      .required('Nhập mã'),
+  });
   return (
     <View style={stylesGlobal.container}>
       <View style={stylesGlobal.footer}>
@@ -37,31 +48,58 @@ const VerifyAccount = ({route,navigation}: any) => {
             </View>
           </View>
         </View>
+        <Formik
+          initialValues={{
+            code: '',
+          }}
+          onSubmit={(values) => {
+            console.log(values);
+            
+          }}
+          validationSchema={Validation}
+          validateOnMount={true}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+            isValid,
+          }) => (
+            <View>
+              <View style={stylesGlobal.input}>
+                <FormField
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  values={values}
+                  label="code"
+                  title="Nhập mã"
+                  touched={touched}
+                  errors={errors}
+                  keyboardType="numeric"
+                />
+              </View>
 
-        <View style={stylesGlobal.input}>
-          <TextInput
-            label="Nhập mã"
-            // mode="outlined"
-
-            right={<TextInput style={{marginRight: 20}} />}
-          />
-        </View>
-
-        <View style={stylesGlobal.input}>
-          <Button
-            // icon="camera"
-            mode="contained"
-            onPress={() => console.log('Tìm')}>
-            Tiếp tục
-          </Button>
-        </View>
-        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <Button
-            // icon="send"
-            onPress={() => console.log('Gửi mã')}>
-            Gửi lại SMS
-          </Button>
-        </View>
+              <View style={stylesGlobal.input}>
+                <Button
+                  // icon="camera"
+                  mode="contained"
+                  // disabled={!isFormValid(isValid, touched)}
+                  onPress={handleSubmit}>
+                  Tiếp tục
+                </Button>
+              </View>
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <Button
+                  // icon="send"
+                  onPress={() => console.log('Gửi mã')}>
+                  Gửi lại SMS
+                </Button>
+              </View>
+            </View>
+          )}
+        </Formik>
       </View>
     </View>
   );

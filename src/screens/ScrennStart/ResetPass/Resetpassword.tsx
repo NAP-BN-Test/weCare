@@ -31,12 +31,11 @@ const ResetPass = ({navigation}: any) => {
         <Formik
           initialValues={{
             numberphone: '',
-            password: '',
           }}
           onSubmit={(values) => {
             console.log(values);
             navigate.navigate('VerifyAccount', {
-              numberphone: numberphone,
+              numberphone: values.numberphone,
             });
           }}
           validationSchema={Validation}
