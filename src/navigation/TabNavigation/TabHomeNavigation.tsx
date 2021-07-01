@@ -17,12 +17,21 @@ const TabHomeNavigation = () => {
             case 'Home':
               iconName = focused ? 'home' : 'home';
               break;
+            case 'Family':
+              iconName = focused ? 'family-restroom' : 'family-restroom';
+              break;
+            case 'Search':
+              iconName = focused ? 'search' : 'search';
+              break;
+            case 'User':
+              iconName = focused ? 'person' : 'person';
+              break;
 
             default:
               break;
           }
           // You can return any component that you like here!
-          return <MaterialIcons name={iconName} size={32} color={color} />;
+          return <MaterialIcons name={iconName} size={28} color={color} />;
         },
       })}
       tabBarOptions={{
@@ -33,6 +42,9 @@ const TabHomeNavigation = () => {
         },
       }}>
       <Tab.Screen name="Home" component={HomeStackScreen} />
+      <Tab.Screen name="Family" component={HomeStackScreen} />
+      <Tab.Screen name="Search" component={HomeStackScreen} />
+      <Tab.Screen name="User" component={HomeStackScreen} />
     </Tab.Navigator>
   );
 };

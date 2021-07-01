@@ -4,7 +4,6 @@ import Error404 from '../../screens/Error404/Error404';
 import Login from '../../screens/ScrennStart/Login/login';
 import SplashSrceen from '../../screens/ScrennStart/splashScreen/splashSrceen';
 import Registration from '../../screens/ScrennStart/Registration/Registration';
-import {BlurView} from 'expo-blur';
 import {StyleSheet, Text} from 'react-native';
 import ResetPass from '../../screens/ScrennStart/ResetPass/Resetpassword';
 import VerifyAccount from '../../screens/ScrennStart/ResetPass/VerifyAccount/VerifyAccount';

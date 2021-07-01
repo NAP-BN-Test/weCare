@@ -41,6 +41,15 @@ const DrawerNavigation = () => {
           ),
         }}
       />
+      <Drawer.Screen
+        name="family"
+        component={TabHomeNavigation}
+        options={{
+          drawerIcon: () => (
+            <Ionicons size={25} name="ios-cube" color="#0074BC" />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 };

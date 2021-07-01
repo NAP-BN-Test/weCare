@@ -33,7 +33,7 @@ const stylesGlobal = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     marginTop: 20,
-    marginBottom: 10,
+    marginBottom: 20,
   },
 
   space_between: {flexDirection: 'row', justifyContent: 'space-between'},
