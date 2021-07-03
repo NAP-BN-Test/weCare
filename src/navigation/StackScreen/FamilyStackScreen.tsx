@@ -2,16 +2,16 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Error404 from '../../screens/Error404/Error404';
 
-const HomeStack = createStackNavigator();
+const FamilyStack = createStackNavigator();
 
 const FamilyStackScreen = () => {
   return (
-    <HomeStack.Navigator
+    <FamilyStack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <HomeStack.Screen name="family" component={Error404} />
-    </HomeStack.Navigator>
+      <FamilyStack.Screen name="family" component={Error404} />
+    </FamilyStack.Navigator>
   );
 };
 

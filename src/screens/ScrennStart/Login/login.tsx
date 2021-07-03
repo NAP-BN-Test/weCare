@@ -51,6 +51,7 @@ const Login = ({navigation}: any) => {
                     title="Số điện thoại"
                     touched={touched}
                     errors={errors}
+                    // right={<TextInput.Affix text="/100" />}
                     keyboardType="numeric"
                   />
                   {/* <TextInput
@@ -91,7 +92,6 @@ const Login = ({navigation}: any) => {
                       />
                     }
                   />
-                  
                 </View>
                 <View style={stylesGlobal.input}>
                   <Button

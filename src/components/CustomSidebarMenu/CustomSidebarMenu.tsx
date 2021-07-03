@@ -11,14 +11,13 @@ const CustomSidebarMenu = ({arrItems, navigation, ...props}: any) => {
         {/* <Image
           source={require('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F849210073475324120%2F&psig=AOvVaw3SyD7wXUv1wKixj_mMstNi&ust=1625124261821000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCKCZuejpvvECFQAAAAAdAAAAABAD')}
         /> */}
-        <View style={{paddingTop: 20}}>
-          <Text style={{fontSize: 18, fontWeight: 'bold'}}>E - Service</Text>
+        <View>
+          <Text style={{fontSize: 18, fontWeight: 'bold'}}>WECARE</Text>
         </View>
       </View>
       <View
         style={{
           borderBottomWidth: 1,
-          paddingTop: 30,
           borderColor: 'gray',
         }}></View>
       <DrawerContentScrollView {...props}>
@@ -43,9 +42,9 @@ const CustomSidebarMenu = ({arrItems, navigation, ...props}: any) => {
 const styles = StyleSheet.create({
   sideMenuProfileIcon: {
     paddingLeft: 10,
-    paddingTop: 30,
+    // paddingTop: 30,
     width: 100,
-    height: 100,
+    height: 50,
     justifyContent: 'center',
   },
   iconStyle: {
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   customItem: {
-    padding: 16,
+    // padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
   },

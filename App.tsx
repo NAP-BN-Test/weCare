@@ -4,8 +4,9 @@ import store from './src/redux/store';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigation from './src/navigation/DrawerNavigation/DrawerNavigation';
 import 'react-native-gesture-handler';
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import RootStackScreen from './src/navigation/RootStack/RootStackScreen';
+import TabHomeNavigation from './src/navigation/TabNavigation/TabHomeNavigation';
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
         <NavigationContainer>
           <View style={styles.container}>
             {/* <DrawerNavigation /> */}
-            <RootStackScreen />
+            <TabHomeNavigation />
+            {/* <RootStackScreen /> */}
           </View>
         </NavigationContainer>
       </React.Fragment>
@@ -24,16 +26,16 @@ const App = () => {
 
 export default App;
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "#fff",
-    },
-    headerRight: {
-      flexDirection: "row",
-      justifyContent: "space-evenly",
-      width: 180,
-    },
-    headerLeft: {
-      paddingLeft: 20,
-    },
-  });
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  headerRight: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: 180,
+  },
+  headerLeft: {
+    paddingLeft: 20,
+  },
+});

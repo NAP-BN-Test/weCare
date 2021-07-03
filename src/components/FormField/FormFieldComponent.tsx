@@ -29,7 +29,7 @@ const FormField = ({
         label={title}
         secureTextEntry={secureTextEntry}
         onChangeText={handleChange(label)}
-        onBlur={handleBlur(label)}
+        // onBlur={handleBlur(label)}
         value={values[label]}
       />
       {touched[label] && errors[label] ? (

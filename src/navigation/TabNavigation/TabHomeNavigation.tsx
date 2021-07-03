@@ -4,6 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackScreen from '../StackScreen/HomeStackScreen';
+import FamilyStackScreen from '../StackScreen/FamilyStackScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,6 +28,10 @@ const TabHomeNavigation = () => {
               iconName = focused ? 'person' : 'person';
               break;
 
+            case 'Menu':
+              iconName = focused ? 'menu' : 'menu';
+              break;
+
             default:
               break;
           }
@@ -35,16 +40,18 @@ const TabHomeNavigation = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'white',
-        inactiveTintColor: '#AAAAAA',
+        activeTintColor: '#000',
+        inactiveTintColor: '#aaa',
         style: {
-          backgroundColor: '#0074BC',
+          height: 50,
+          backgroundColor: 'white',
         },
       }}>
       <Tab.Screen name="Home" component={HomeStackScreen} />
-      <Tab.Screen name="Family" component={HomeStackScreen} />
+      <Tab.Screen name="Family" component={FamilyStackScreen} />
       <Tab.Screen name="Search" component={HomeStackScreen} />
       <Tab.Screen name="User" component={HomeStackScreen} />
+      <Tab.Screen name="Menu" component={HomeStackScreen} />
     </Tab.Navigator>
   );
 };

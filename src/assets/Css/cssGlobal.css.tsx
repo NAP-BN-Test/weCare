@@ -36,6 +36,14 @@ const stylesGlobal = StyleSheet.create({
     marginBottom: 20,
   },
 
+  action: {
+    // flexDirection: 'row',
+    // marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f2f2f2',
+    // paddingBottom: 5,
+  },
+
   space_between: {flexDirection: 'row', justifyContent: 'space-between'},
   row_center: {flexDirection: 'row', justifyContent: 'center'},
 
