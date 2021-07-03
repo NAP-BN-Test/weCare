@@ -7,6 +7,7 @@ import 'react-native-gesture-handler';
 import {StyleSheet, View} from 'react-native';
 import RootStackScreen from './src/navigation/RootStack/RootStackScreen';
 import TabHomeNavigation from './src/navigation/TabNavigation/TabHomeNavigation';
+import Hearder from './src/components/Hearders/Hearder';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <NavigationContainer>
           <View style={styles.container}>
             {/* <DrawerNavigation /> */}
+            <Hearder />
             <TabHomeNavigation />
             {/* <RootStackScreen /> */}
           </View>

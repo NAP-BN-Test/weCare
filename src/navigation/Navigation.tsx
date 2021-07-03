@@ -1,11 +1,13 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import DrawerNavigation from "./DrawerNavigation/DrawerNavigation";
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import DrawerNavigation from './DrawerNavigation/DrawerNavigation';
+import TabHomeNavigation from './TabNavigation/TabHomeNavigation';
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <DrawerNavigation />
+      <TabHomeNavigation />
+      {/* <DrawerNavigation /> */}
     </NavigationContainer>
   );
 };

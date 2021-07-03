@@ -1,7 +1,5 @@
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackScreen from '../StackScreen/HomeStackScreen';
 import FamilyStackScreen from '../StackScreen/FamilyStackScreen';
