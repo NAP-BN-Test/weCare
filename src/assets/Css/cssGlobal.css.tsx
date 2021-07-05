@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const stylesGlobal = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#f3f3f39e',
   },
 
   footer: {
@@ -46,6 +46,11 @@ const stylesGlobal = StyleSheet.create({
 
   space_between: {flexDirection: 'row', justifyContent: 'space-between'},
   row_center: {flexDirection: 'row', justifyContent: 'center'},
+
+  text_h2: {
+    fontSize: 23,
+    fontWeight: 'bold'
+  }
 
 });
 export default stylesGlobal;

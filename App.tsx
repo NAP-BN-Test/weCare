@@ -1,5 +1,5 @@
 import React from 'react';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import store from './src/redux/store';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigation from './src/navigation/DrawerNavigation/DrawerNavigation';
@@ -8,18 +8,14 @@ import {StyleSheet, View} from 'react-native';
 import RootStackScreen from './src/navigation/RootStack/RootStackScreen';
 import TabHomeNavigation from './src/navigation/TabNavigation/TabHomeNavigation';
 import Hearder from './src/components/Hearders/Hearder';
+import {RootState} from './src/redux/reducers/index.reducer';
 
 const App = () => {
   return (
     <Provider store={store}>
       <React.Fragment>
         <NavigationContainer>
-          <View style={styles.container}>
-            {/* <DrawerNavigation /> */}
-            <Hearder />
-            <TabHomeNavigation />
-            {/* <RootStackScreen /> */}
-          </View>
+          <RootStackScreen />
         </NavigationContainer>
       </React.Fragment>
     </Provider>

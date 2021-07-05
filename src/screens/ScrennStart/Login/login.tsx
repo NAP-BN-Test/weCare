@@ -8,8 +8,11 @@ import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import ValidationForm from '../../../assets/Validation/validationlogin';
 import FormField from '../../../components/FormField/FormFieldComponent';
+import { Action } from '../../../redux/actions/index.action';
+import { useDispatch } from 'react-redux';
 const Login = ({navigation}: any) => {
   const navigate = useNavigation();
+  const dispatch = useDispatch();
   const [secureTextEntry, setsecureTextEntry] = useState(true);
   return (
     <View style={stylesGlobal.container}>
@@ -29,6 +32,7 @@ const Login = ({navigation}: any) => {
             }}
             onSubmit={(values) => {
               console.log(values);
+              dispatch(Action.act_login(values.numberphone, values.password));
             }}
             validationSchema={ValidationForm}
             validateOnMount={true}>
