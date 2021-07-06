@@ -11,99 +11,20 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/reducers/index.reducer';
 import TabHomeNavigation from '../TabNavigation/TabHomeNavigation';
 import Hearder from '../../components/Hearders/Hearder';
+import AuthStackScreen from '../Auth/AuthStackScreen';
 const RootStack = createStackNavigator();
 
 const RootStackScreen = ({navigation}: any) => {
   const Auth: any = useSelector((state: RootState) => state.Auth);
-  console.log("Auth",Auth);
-  
+  console.log('Auth', Auth);
+
   return Auth.accesstoken != '' ? (
     <View style={styles.container}>
       <Hearder />
       <TabHomeNavigation />
     </View>
   ) : (
-    <RootStack.Navigator
-      screenOptions={
-        {
-          // headerShown: false,
-        }
-      }>
-      {/* <RootStack.Screen
-        options={{headerShown: false}}
-        name="splashSrceen"
-        component={SplashSrceen}
-      /> */}
-      <RootStack.Screen
-        options={{
-          // title: 'Đăng nhập',
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: '#6000ec',
-          },
-          headerTitleAlign: 'center',
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            // fontWeight: 'bold',
-          },
-        }}
-        name="login"
-        component={Login}
-      />
-      <RootStack.Screen
-        options={{
-          title: 'Đăng ký',
-          headerStyle: {
-            backgroundColor: '#6000ec',
-          },
-          headerTitleAlign: 'center',
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            // fontWeight: 'bold',
-          },
-          // headerRight: ()=> <Text>abc</Text>
-          // headerTransparent: true,
-        }}
-        name="registration"
-        component={Registration}
-      />
-
-      <RootStack.Screen
-        options={{
-          title: 'Tìm tài khoản của bạn',
-          headerStyle: {
-            backgroundColor: '#6000ec',
-          },
-          headerTitleAlign: 'center',
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            // fontWeight: 'bold',
-          },
-          // headerRight: ()=> <Text>abc</Text>
-          // headerTransparent: true,
-        }}
-        name="ResetPass"
-        component={ResetPass}
-      />
-
-      <RootStack.Screen
-        options={{
-          title: 'Xác nhận tài khoản của bạn',
-          headerStyle: {
-            backgroundColor: '#6000ec',
-          },
-          headerTitleAlign: 'center',
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            // fontWeight: 'bold',
-          },
-          // headerRight: ()=> <Text>abc</Text>
-          // headerTransparent: true,
-        }}
-        name="VerifyAccount"
-        component={VerifyAccount}
-      />
-    </RootStack.Navigator>
+    <AuthStackScreen />
   );
 };
 

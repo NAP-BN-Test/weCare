@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import * as constants from '../constants';
 
 function act_alert_success(messages: string) {
@@ -16,18 +17,22 @@ function act_alert_error(messages: string) {
 function get_user_info(user: any) {
   return {type: constants.GET_USER_INFO, value: user};
 }
+
+function logout(user: any) {
+  return {type: constants.LOGOUT, value: user};
+}
 // Action
 function act_login(numberphone: any, password: any) {
   let tk = {
-    numberphone: "0123456789",
-    password: "123456",
+    numberphone: '0123456789',
+    password: '123456',
   };
   let body = {
     numberphone: numberphone,
     password: password,
   };
   console.log('body đăng nhập', body);
-  
+
   return (dispatch: any) => {
     if (body.numberphone === tk.numberphone && body.password === tk.password) {
       console.log('Đăng nhập thành công');
@@ -37,9 +42,7 @@ function act_login(numberphone: any, password: any) {
         permisson: 'admin',
       };
       dispatch(get_user_info(user));
-     
-      
-    }else{
+    } else {
       console.log('Đăng nhập không thành công');
     }
     // Services.login(body).then(async (res) => {
@@ -58,8 +61,21 @@ function act_login(numberphone: any, password: any) {
     // });
   };
 }
+
+function act_logout() {
+  return (dispatch: any) => {
+    let user: any = {
+      userinfo: '',
+      accesstoken: '',
+      permisson: '',
+    };
+    dispatch(logout(user));
+  };
+}
 export const Action = {
   act_alert_error,
   act_alert_success,
   act_login,
+  get_user_info,
+  act_logout,
 };

@@ -2,7 +2,12 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import stylesGlobal from '../../assets/Css/cssGlobal.css';
 import {Avatar, Button, Card, Title} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {Action} from '../../redux/actions/index.action';
 function Menu() {
+  const navigate = useNavigation();
+  const dispatch = useDispatch();
   return (
     <View
       style={[
@@ -30,8 +35,14 @@ function Menu() {
         </TouchableOpacity>
 
         {/* Menu */}
-        <View style={{flexDirection: 'row', marginBottom: 10, justifyContent: 'space-between'}}>
-          <View style={{width: '48%', marginRight: 10, flexDirection: 'column',}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginBottom: 10,
+            justifyContent: 'space-between',
+          }}>
+          <View
+            style={{width: '48%', marginRight: 10, flexDirection: 'column'}}>
             <TouchableOpacity>
               <Card style={styles.card_content}>
                 <Card.Content>
@@ -63,7 +74,8 @@ function Menu() {
             </TouchableOpacity>
           </View>
 
-          <View style={{width: '48%',marginRight: 10, flexDirection: 'column'}}>
+          <View
+            style={{width: '48%', marginRight: 10, flexDirection: 'column'}}>
             <TouchableOpacity>
               <Card style={styles.card_content}>
                 <Card.Content>
@@ -103,8 +115,10 @@ function Menu() {
           <Button
             mode="contained"
             // disabled={!isFormValid(isValid, touched)}
-            // onPress={handleSubmit}
-          >
+            onPress={() => {
+              dispatch(Action.act_logout());
+              
+            }}>
             Đăng xuất
           </Button>
         </View>
