@@ -10,8 +10,6 @@ import {
   Provider,
 } from 'react-native-paper';
 const BtnPlus = ({onPress, actions, color, backgroundColor, icon}: any) => {
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const onChangeSearch = (query: any) => setSearchQuery(query);
   const [open, setopen] = useState(false);
 
   const onStateChange = ({open}: any) => setopen(open);

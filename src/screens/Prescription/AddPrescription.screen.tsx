@@ -4,6 +4,7 @@ import stylesGlobal from '../../assets/Css/cssGlobal.css';
 import {Formik} from 'formik';
 import FormField from '../../components/FormField/FormFieldComponent';
 import {Button} from 'react-native-paper';
+import DateSingle from '../../components/Date/DatetimeSinger';
 function AddPrescription() {
   return (
     <View style={stylesGlobal.container}>
@@ -57,7 +58,7 @@ function AddPrescription() {
                 />
               </View>
 
-              <View style={stylesGlobal.input}>
+              {/* <View style={stylesGlobal.input}>
                 <FormField
                   handleChange={handleChange}
                   handleBlur={handleBlur}
@@ -69,7 +70,9 @@ function AddPrescription() {
                   // right={<TextInput.Affix text="/100" />}
                   keyboardType="numeric"
                 />
-              </View>
+              </View> */}
+
+              <DateSingle label="date" title="Ngày kê đơn" />
               <View style={stylesGlobal.input}>
                 <Button
                   mode="contained"
