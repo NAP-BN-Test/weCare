@@ -47,7 +47,7 @@ function Menu() {
               <Card style={styles.card_content}>
                 <Card.Content>
                   <View>
-                    <Title>abc</Title>
+                    <Title>Chức năng</Title>
                   </View>
                 </Card.Content>
               </Card>
@@ -57,7 +57,7 @@ function Menu() {
               <Card style={styles.card_content}>
                 <Card.Content>
                   <View>
-                    <Title>abc</Title>
+                    <Title>Chức năng</Title>
                   </View>
                 </Card.Content>
               </Card>
@@ -67,7 +67,7 @@ function Menu() {
               <Card style={styles.card_content}>
                 <Card.Content>
                   <View>
-                    <Title>abc</Title>
+                    <Title>Chức năng</Title>
                   </View>
                 </Card.Content>
               </Card>
@@ -80,8 +80,8 @@ function Menu() {
               <Card style={styles.card_content}>
                 <Card.Content>
                   <View>
-                    <Title>abc</Title>
-                    <Title>bca</Title>
+                    <Title>Chức năng</Title>
+                    <Text>thông tin</Text>
                   </View>
                 </Card.Content>
               </Card>
@@ -91,7 +91,7 @@ function Menu() {
               <Card style={styles.card_content}>
                 <Card.Content>
                   <View>
-                    <Title>abc</Title>
+                    <Title>Chức năng</Title>
                   </View>
                 </Card.Content>
               </Card>
@@ -101,8 +101,8 @@ function Menu() {
               <Card style={styles.card_content}>
                 <Card.Content>
                   <View>
-                    <Title>Tesst</Title>
-                    <Title>bca</Title>
+                    <Title>Chức năng</Title>
+                    <Text>thông tin</Text>
                   </View>
                 </Card.Content>
               </Card>
@@ -117,7 +117,6 @@ function Menu() {
             // disabled={!isFormValid(isValid, touched)}
             onPress={() => {
               dispatch(Action.act_logout());
-              
             }}>
             Đăng xuất
           </Button>

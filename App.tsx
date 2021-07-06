@@ -2,7 +2,6 @@ import React from 'react';
 import {Provider, useSelector} from 'react-redux';
 import store from './src/redux/store';
 import {NavigationContainer} from '@react-navigation/native';
-import DrawerNavigation from './src/navigation/DrawerNavigation/DrawerNavigation';
 import 'react-native-gesture-handler';
 import {StyleSheet, View} from 'react-native';
 import RootStackScreen from './src/navigation/RootStack/RootStackScreen';

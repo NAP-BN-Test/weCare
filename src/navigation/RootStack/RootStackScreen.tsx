@@ -12,7 +12,7 @@ import {RootState} from '../../redux/reducers/index.reducer';
 import TabHomeNavigation from '../TabNavigation/TabHomeNavigation';
 import Hearder from '../../components/Hearders/Hearder';
 import AuthStackScreen from '../Auth/AuthStackScreen';
-const RootStack = createStackNavigator();
+import MainStackScreen from '../StackScreen/MainStackScreen';
 
 const RootStackScreen = ({navigation}: any) => {
   const Auth: any = useSelector((state: RootState) => state.Auth);
@@ -20,8 +20,8 @@ const RootStackScreen = ({navigation}: any) => {
 
   return Auth.accesstoken != '' ? (
     <View style={styles.container}>
-      <Hearder />
-      <TabHomeNavigation />
+      {/* <Hearder /> */}
+      <MainStackScreen />
     </View>
   ) : (
     <AuthStackScreen />
@@ -33,13 +33,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  headerRight: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    width: 180,
-  },
-  headerLeft: {
-    paddingLeft: 20,
+    width: '100%',
   },
 });

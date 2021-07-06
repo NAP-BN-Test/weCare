@@ -24,14 +24,6 @@ const AuthStackScreen = ({navigation}: any) => {
         options={{
           // title: 'Đăng nhập',
           headerShown: false,
-          headerStyle: {
-            backgroundColor: '#6000ec',
-          },
-          headerTitleAlign: 'center',
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            // fontWeight: 'bold',
-          },
         }}
         name="login"
         component={Login}

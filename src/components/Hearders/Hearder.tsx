@@ -2,7 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import stylesGlobal from '../../assets/Css/cssGlobal.css';
 import {Surface} from 'react-native-paper';
-function Hearder() {
+function Hearder(props: any) {
+  console.log('props', props);
+
   return (
     <Surface style={styles.surface}>
       <View style={stylesGlobal.space_between}>
@@ -18,9 +20,9 @@ export default Hearder;
 const styles = StyleSheet.create({
   surface: {
     padding: 8,
-    height: 60,
+    height: 55,
     width: '100%',
     justifyContent: 'center',
-    elevation: 5,
+    // elevation: 5,
   },
 });

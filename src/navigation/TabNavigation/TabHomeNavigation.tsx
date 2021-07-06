@@ -6,11 +6,13 @@ import FamilyStackScreen from '../StackScreen/FamilyStackScreen';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/reducers/index.reducer';
 import MenuStackScreen from '../StackScreen/MenuStackScreen';
-
+import PrescriptionStackScreen from '../StackScreen/PrescriptionStackScreen';
+import Error404 from '../../screens/Error404/Error404';
+import {View} from 'react-native';
+import Hearder from '../../components/Hearders/Hearder';
 const Tab = createBottomTabNavigator();
 
 const TabHomeNavigation = () => {
-  
   return (
     <Tab.Navigator
       screenOptions={({route}: any) => ({
@@ -53,12 +55,13 @@ const TabHomeNavigation = () => {
         },
       }}>
       <Tab.Screen name="Home" component={HomeStackScreen} />
-      <Tab.Screen name="Prescription" component={HomeStackScreen} />
-      <Tab.Screen name="Search" component={HomeStackScreen} />
+      <Tab.Screen name="Prescription" component={PrescriptionStackScreen} />
+      <Tab.Screen name="Search" component={Error404} />
       <Tab.Screen name="Family" component={FamilyStackScreen} />
       {/* <Tab.Screen name="User" component={HomeStackScreen} /> */}
       <Tab.Screen name="Menu" component={MenuStackScreen} />
     </Tab.Navigator>
+    // </View>
   );
 };
 
