@@ -5,41 +5,46 @@ import FormField from '../FormField/FormFieldComponent';
 import {TextInput} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
-const DateSingle = ({label, value, title}: any) => {
+import {StyleSheet, Text} from 'react-native';
+const DateSingle = ({
+  label,
+  title,
+  handleBlur,
+  handleChange,
+  values,
+  errors,
+  setFieldValue,
+  ...props
+}: any) => {
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const [open, setOpen] = React.useState(false);
+  console.log('Ngày', date);
+  console.log('label', label);
 
   const onDismissSingle = React.useCallback(() => {
     setOpen(false);
   }, [setOpen]);
 
-  // React.useEffect(()=>{
-  //   setDate(value)
-  // },[value])
-
   const onConfirmSingle = React.useCallback(
     (params) => {
+      console.log(params.date);
       setOpen(false);
       setDate(params.date);
+      setFieldValue(label, params.date);
+      
     },
     [setOpen, setDate],
   );
 
   return (
     <>
-      {/* <Button onPress={() => setOpen(true)} uppercase={false} mode="outlined">
-        Pick single date
-      </Button> */}
       <TextInput
         mode="outlined"
         theme={{
-          // roundness: 50,
           colors: {
-            // primary: 'green',
             background: 'white',
           },
         }}
-        // outlineColor='gray'
         editable={false}
         label={title}
         right={
@@ -53,29 +58,37 @@ const DateSingle = ({label, value, title}: any) => {
             }}
           />
         }
-        // onBlur={handleBlur(label)}
-        // value={date?.toDateString()}
-        value={moment(date).format('DD-MM-YYYY')}
-        // onTextInput={() => setOpen(true)}
-        // onChange={() => setOpen(true)}
+        value={moment(values[label]).format('DD-MM-YYYY')}
       />
       <DatePickerModal
-        // locale={'en'} optional, default: automatic
+        {...props}
+        // locale={'en'} //optional, default: automatic
         mode="single"
         visible={open}
         onDismiss={onDismissSingle}
         date={date}
         onConfirm={onConfirmSingle}
-        // validRange={{
-        //   startDate: new Date(2021, 1, 2),  // optional
-        //   endDate: new Date(), // optional
-        // }}
-        // onChange={} // same props as onConfirm but triggered without confirmed by user
-        // saveLabel="Save" // optional
-        label={title} // optional
-        animationType="slide" // optional, default is 'slide' on ios/android and 'none' on web
+        // onChange={(e) => setFieldValue(label, e.date)}
+        saveLabel="Lưu"
+        label={title}
+        animationType="slide"
       />
+      {errors[label] ? (
+        <Text style={styles.textYup}>{errors[label]}</Text>
+      ) : null}
     </>
   );
 };
 export default DateSingle;
+const styles = StyleSheet.create({
+  input: {
+    paddingBottom: 15,
+  },
+  title_input: {
+    paddingBottom: 5,
+  },
+
+  textYup: {
+    color: 'red',
+  },
+});

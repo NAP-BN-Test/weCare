@@ -19,6 +19,8 @@ import {SwipeListView} from 'react-native-swipe-list-view';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {ScrollView} from 'react-native-gesture-handler';
 import {number} from 'yup/lib/locale';
+import BtnPlus from '../../components/Btn/BtnPlusCompent';
+import BtnPluss from '../../components/Btn/btnPlusCompents';
 const wait = (timeout: any) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
@@ -134,17 +136,17 @@ function Home() {
             data={arrayNote}
             renderItem={(data, rowMap) => (
               <View style={styles.rowFront} key={data.item.id}>
-                <TouchableOpacity>
-                  <Card style={styles.card_content}>
-                    <Card.Content>
-                      <View style={stylesGlobal.space_between}>
-                        <Title>{data.item.title}</Title>
-                        <Title>{data.item.time}</Title>
-                      </View>
-                      <Text>{data.item.number}</Text>
-                    </Card.Content>
-                  </Card>
-                </TouchableOpacity>
+                {/* <TouchableOpacity> */}
+                <Card style={styles.card_content}>
+                  <Card.Content>
+                    <View style={stylesGlobal.space_between}>
+                      <Title>{data.item.title}</Title>
+                      <Title>{data.item.time}</Title>
+                    </View>
+                    <Text>{data.item.number}</Text>
+                  </Card.Content>
+                </Card>
+                {/* </TouchableOpacity> */}
               </View>
             )}
             renderHiddenItem={(data, rowMap) => (
@@ -176,47 +178,33 @@ function Home() {
           <View style={{width: '100%', height: 60}}></View>
         </ScrollView>
 
-        <Provider>
-          <Portal>
-            <FAB.Group
-              // color="white"
-              // theme={open ? {colors: {accent: 'transparent'}} : undefined}
-              // fabStyle={{backgroundColor: '#000'}}
-              open={open}
-              visible={true}
-              icon={open ? 'calendar-today' : 'plus'}
-              actions={[
-                {
-                  icon: 'plus',
-                  label: 'Add',
-                  onPress: () => console.log('Pressed add'),
-                },
-                {
-                  icon: 'star',
-                  label: 'Star',
-                  onPress: () => console.log('Pressed star'),
-                },
-                {
-                  icon: 'email',
-                  label: 'Email',
-                  onPress: () => console.log('Pressed email'),
-                },
-                {
-                  icon: 'bell',
-                  label: 'Remind',
-                  onPress: () => console.log('Pressed notifications'),
-                  small: false,
-                },
-              ]}
-              onStateChange={onStateChange}
-              onPress={() => {
-                if (open) {
-                  // do something if the speed dial is open
-                }
-              }}
-            />
-          </Portal>
-        </Provider>
+        <BtnPluss
+          icon="plus"
+          actions={[
+            {
+              icon: 'plus',
+              label: 'Add',
+              onPress: () => console.log('Pressed add'),
+            },
+            {
+              icon: 'star',
+              label: 'Star',
+              onPress: () => console.log('Pressed star'),
+            },
+            {
+              icon: 'email',
+              label: 'Email',
+              onPress: () => console.log('Pressed email'),
+            },
+            {
+              icon: 'bell',
+              label: 'Remind',
+              onPress: () => console.log('Pressed notifications'),
+              small: false,
+            },
+          ]}
+          onPress={() => {}}
+        />
       </View>
     </View>
   );

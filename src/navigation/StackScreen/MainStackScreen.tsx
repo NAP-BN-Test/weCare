@@ -7,8 +7,9 @@ import TabHomeNavigation from '../TabNavigation/TabHomeNavigation';
 import Detail from '../../screens/Prescription/Detail/Detail.screen';
 import Hearder from '../../components/Hearders/Hearder';
 import AddMedicine from '../../screens/Prescription/Detail/AddMedicine.screen';
-import { Text } from 'react-native';
+import {Text} from 'react-native';
 import AddPrescription from '../../screens/Prescription/AddPrescription.screen';
+import ListMedicine from '../../screens/Prescription/Detail/ListMedicine.screen';
 const MainStack = createStackNavigator();
 
 const MainStackScreen = () => {
@@ -76,6 +77,24 @@ const MainStackScreen = () => {
           // headerTransparent: true,
         }}
         component={AddPrescription}
+      />
+
+      <MainStack.Screen
+        name="listMedicine"
+        options={{
+          title: 'Danh sách thuốc',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        component={ListMedicine}
       />
     </MainStack.Navigator>
   );

@@ -105,19 +105,23 @@ function Prescription({navigation}: any) {
             data={arrayNote}
             renderItem={(data, rowMap) => (
               <View style={stylesPrescription.rowFront} key={data.item.id}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
+                  onPress={() => {
+                    navigate.navigate('detailPrescription');
+                  }}> */}
+                <Card
+                  style={stylesPrescription.card_content}
                   onPress={() => {
                     navigate.navigate('detailPrescription');
                   }}>
-                  <Card style={stylesPrescription.card_content}>
-                    <Card.Content>
-                      <View style={stylesGlobal.space_between}>
-                        <Title>{data.item.title}</Title>
-                        <Title>{data.item.date}</Title>
-                      </View>
-                    </Card.Content>
-                  </Card>
-                </TouchableOpacity>
+                  <Card.Content>
+                    <View style={stylesGlobal.space_between}>
+                      <Title>{data.item.title}</Title>
+                      <Title>{data.item.date}</Title>
+                    </View>
+                  </Card.Content>
+                </Card>
+                {/* </TouchableOpacity> */}
               </View>
             )}
             renderHiddenItem={(data, rowMap) => (

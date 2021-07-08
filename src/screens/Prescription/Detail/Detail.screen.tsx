@@ -94,45 +94,51 @@ function Detail({navigation}: any) {
             data={arrayNote}
             renderItem={(data, rowMap) => (
               <View style={stylesPrescription.rowFront} key={data.item.id}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   onPress={() => {
                     // navigate.navigate('addMedicine');
+                  }}> */}
+                <Card
+                  style={stylesPrescription.card_content}
+                  onPress={() => {
+                    console.log('Thông tin thuốc');
+                    
+                    // navigate.navigate('addMedicine');
                   }}>
-                  <Card style={stylesPrescription.card_content}>
-                    <Card.Content>
-                      <View style={stylesGlobal.space_between}>
-                        <View
-                          style={{
-                            width: '20%',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                          }}>
-                          <Image
-                            style={{height: 50, width: 50}}
-                            source={{
-                              uri: data.item.img,
-                            }}
-                          />
-                        </View>
-                        <View style={{width: '80%'}}>
-                          <Title>{data.item.name}</Title>
-                          <Text>
-                            <Text style={{fontWeight: 'bold'}}>Thành phần</Text>
-                            : {data.item.Ingredient}{' '}
-                          </Text>
-                          <Text>
-                            <Text style={{fontWeight: 'bold'}}>Công dụng</Text>:{' '}
-                            {data.item.func}{' '}
-                          </Text>
-                          <Text>
-                            <Text style={{fontWeight: 'bold'}}>Cách dùng</Text>:{' '}
-                            {data.item.usage}{' '}
-                          </Text>
-                        </View>
+                  <Card.Content>
+                    <View style={stylesGlobal.space_between}>
+                      <View
+                        style={{
+                          width: '20%',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                        }}>
+                        <Image
+                          style={{height: 50, width: 50}}
+                          source={{
+                            uri: data.item.img,
+                          }}
+                        />
                       </View>
-                    </Card.Content>
-                  </Card>
-                </TouchableOpacity>
+                      <View style={{width: '80%'}}>
+                        <Title>{data.item.name}</Title>
+                        <Text>
+                          <Text style={{fontWeight: 'bold'}}>Thành phần</Text>:{' '}
+                          {data.item.Ingredient}{' '}
+                        </Text>
+                        <Text>
+                          <Text style={{fontWeight: 'bold'}}>Công dụng</Text>:{' '}
+                          {data.item.func}{' '}
+                        </Text>
+                        <Text>
+                          <Text style={{fontWeight: 'bold'}}>Cách dùng</Text>:{' '}
+                          {data.item.usage}{' '}
+                        </Text>
+                      </View>
+                    </View>
+                  </Card.Content>
+                </Card>
+                {/* </TouchableOpacity> */}
               </View>
             )}
             renderHiddenItem={(data, rowMap) => (
