@@ -126,7 +126,7 @@ function Home() {
           value={searchQuery}
           style={{marginBottom: 10}}
         />
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <SwipeListView
             previewRowKey={'0'}
             // useFlatList

@@ -84,8 +84,9 @@ function Detail({navigation}: any) {
           style={{marginBottom: 10}}
         />
 
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <SwipeListView
+          
             previewRowKey={'0'}
             // useFlatList
             refreshControl={
@@ -113,6 +114,7 @@ function Detail({navigation}: any) {
                           flexDirection: 'row',
                           alignItems: 'center',
                         }}>
+                          
                         <Image
                           style={{height: 50, width: 50}}
                           source={{
