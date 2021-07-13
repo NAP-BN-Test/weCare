@@ -9,11 +9,14 @@ import BtnPlus from '../../components/Btn/BtnPlusCompent';
 import stylesPrescription from './Prescription.css';
 import {Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {ActionScreen} from '../../redux/actions/actions.screen/action.screen';
 const wait = (timeout: any) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 function Prescription({navigation}: any) {
   const navigate = useNavigation();
+  const dispatch = useDispatch();
   const [refreshing, setRefreshing] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = (query: any) => setSearchQuery(query);
@@ -157,6 +160,7 @@ function Prescription({navigation}: any) {
           actions={[]}
           onPress={() => {
             navigate.navigate('addPrescription');
+            dispatch(ActionScreen.act_ADDNEWLIST_Medicine([]));
           }}
         />
       </View>

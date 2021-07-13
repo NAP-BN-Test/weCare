@@ -17,11 +17,12 @@ export default function SearchDropDown(props: any) {
           ? dataSource.map((item: any) => {
               return (
                 <TouchableOpacity
-                  onPress={() => props.onPressSearchDropDown(item)} key={item.id}>
+                  onPress={() => props.onPressSearchDropDown(item)}
+                  key={item.id}>
                   <View style={[styles.subContainer]}>
                     <View style={styles.itemView}>
                       <Image
-                        style={{height: 30, width: 30}}
+                        style={{height: 50, width: 50}}
                         source={{
                           uri: item.img,
                         }}
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
   itemText: {
     color: 'black',
     paddingHorizontal: 10,
+    fontSize: 20,
   },
   noResultView: {
     alignSelf: 'center',

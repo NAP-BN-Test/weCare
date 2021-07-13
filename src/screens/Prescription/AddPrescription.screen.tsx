@@ -9,12 +9,15 @@ import moment from 'moment';
 import BtnPluss from '../../components/Btn/btnPlusCompents';
 import {useNavigation} from '@react-navigation/native';
 import * as Yup from 'yup';
-function AddPrescription() {
+function AddPrescription({navigation}: any) {
   const navigate = useNavigation();
   const Validation = Yup.object().shape({
     name: Yup.string().required('Nhập tên đơn'),
     address: Yup.string().required('Nhập nơi kê đơn'),
   });
+  // const {params} = route.params;
+  // console.log('params',params);
+  
   return (
     <View style={stylesGlobal.container}>
       <View style={stylesGlobal.footer}>

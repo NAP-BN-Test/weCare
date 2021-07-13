@@ -44,6 +44,7 @@ function act_login(numberphone: any, password: any) {
       dispatch(get_user_info(user));
     } else {
       console.log('Đăng nhập không thành công');
+      dispatch(act_alert_error('Tài khoản hoặc mật khẩu không chính xác'));
     }
     // Services.login(body).then(async (res) => {
     //   if (res.status === 200) {
@@ -72,6 +73,8 @@ function act_logout() {
     dispatch(logout(user));
   };
 }
+
+
 export const Action = {
   act_alert_error,
   act_alert_success,

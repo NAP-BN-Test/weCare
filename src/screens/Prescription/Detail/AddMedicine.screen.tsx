@@ -9,11 +9,12 @@ import {Image} from 'react-native';
 import SearchDropDown from '../../../components/SearchDropDown/SearchDropDown';
 import Toast from 'react-native-simple-toast';
 import {Avatar} from 'react-native-paper';
+import {ActionScreen} from '../../../redux/actions/actions.screen/action.screen';
+import {useDispatch} from 'react-redux';
 // import {RNCamera} from 'react-native-camera';
-import MultiSelect from 'react-native-multiple-select';
 function AddMedicine({navigation}: any) {
   const [searchQuery, setSearchQuery] = useState('');
-
+  const dispatch = useDispatch();
   const [selectedItems, setselectedItems] = useState([] as any);
   console.log('selectedItems', selectedItems);
 
@@ -107,8 +108,13 @@ function AddMedicine({navigation}: any) {
     let index = selectedItems.findIndex((values: any) => values.id === item.id);
 
     if (index >= 0) {
-      Toast.showWithGravity('Thuốc đã tồn tại trong đơn', 5000, Toast.TOP);
+      Toast.showWithGravity('Thuốc đã tồn tại trong đơn', 3000, Toast.TOP);
     } else {
+      Toast.showWithGravity(
+        'Đã thêm thuốc ' + item.name + ' vào danh sách',
+        500,
+        Toast.TOP,
+      );
       setselectedItems((oldArray: any) => [...oldArray, item]);
     }
   };
@@ -239,8 +245,10 @@ function AddMedicine({navigation}: any) {
               mode="contained"
               style={{marginTop: 10}}
               // disabled={!isFormValid(isValid, touched)}
-              // onPress={handleSubmit}
-            >
+              onPress={() => {
+                navigation.goBack();
+                dispatch(ActionScreen.act_ADD_Medicine(selectedItems));
+              }}>
               Thêm
             </Button>
           </View>
