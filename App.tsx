@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Provider, useSelector} from 'react-redux';
 import store from './src/redux/store';
 import {NavigationContainer} from '@react-navigation/native';
@@ -8,8 +8,8 @@ import RootStackScreen from './src/navigation/RootStack/RootStackScreen';
 import TabHomeNavigation from './src/navigation/TabNavigation/TabHomeNavigation';
 import Hearder from './src/components/Hearders/Hearder';
 import {RootState} from './src/redux/reducers/index.reducer';
-
 const App = () => {
+  
   return (
     <Provider store={store}>
       <React.Fragment>

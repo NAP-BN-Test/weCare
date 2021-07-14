@@ -17,9 +17,9 @@ function AddPrescription({navigation}: any) {
   });
   // const {params} = route.params;
   // console.log('params',params);
-  
+
   return (
-    <View style={stylesGlobal.container}>
+    <View style={[stylesGlobal.container,{backgroundColor: '#fff'}]}>
       <View style={stylesGlobal.footer}>
         <Formik
           initialValues={{
@@ -98,25 +98,25 @@ function AddPrescription({navigation}: any) {
             </View>
           )}
         </Formik>
-
-        <BtnPluss
-          icon="plus"
-          actions={[
-            {
-              icon: 'plus',
-              label: 'Thêm thuốc',
-              onPress: () => navigate.navigate('addMedicine'),
-            },
-            {
-              icon: 'content-paste',
-              label: 'Danh sách thuốc',
-              onPress: () => navigate.navigate('listMedicine'),
-              // small: false,
-            },
-          ]}
-          onPress={() => {}}
-        />
       </View>
+
+      <BtnPluss
+        icon="plus"
+        actions={[
+          {
+            icon: 'plus',
+            label: 'Thêm thuốc',
+            onPress: () => navigate.navigate('addMedicine'),
+          },
+          {
+            icon: 'content-paste',
+            label: 'Danh sách thuốc',
+            onPress: () => navigate.navigate('listMedicine'),
+            // small: false,
+          },
+        ]}
+        onPress={() => {}}
+      />
     </View>
   );
 }

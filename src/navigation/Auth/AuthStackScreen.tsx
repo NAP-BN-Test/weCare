@@ -5,6 +5,8 @@ import Registration from '../../screens/ScrennStart/Registration/Registration';
 import {StyleSheet, Text, View} from 'react-native';
 import ResetPass from '../../screens/ScrennStart/ResetPass/Resetpassword';
 import VerifyAccount from '../../screens/ScrennStart/ResetPass/VerifyAccount/VerifyAccount';
+import LoginFireBase from '../../screens/ScrennStart/FireBase';
+import VerifyAccountFireBase from '../../screens/ScrennStart/FireBase/confirm';
 const AuthStack = createStackNavigator();
 
 const AuthStackScreen = ({navigation}: any) => {
@@ -80,6 +82,42 @@ const AuthStackScreen = ({navigation}: any) => {
         }}
         name="VerifyAccount"
         component={VerifyAccount}
+      />
+
+      <AuthStack.Screen
+        options={{
+          title: 'Đăng nhập bằng số điện thoại',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        name="FireBaseOTP"
+        component={LoginFireBase}
+      />
+
+      <AuthStack.Screen
+        options={{
+          title: 'Xác nhận số điện thoaị',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        name="ConfirmOTP"
+        component={VerifyAccountFireBase}
       />
     </AuthStack.Navigator>
   );

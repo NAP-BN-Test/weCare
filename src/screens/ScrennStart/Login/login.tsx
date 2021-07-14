@@ -8,8 +8,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import ValidationForm from '../../../assets/Validation/validationlogin';
 import FormField from '../../../components/FormField/FormFieldComponent';
-import { Action } from '../../../redux/actions/index.action';
-import { useDispatch } from 'react-redux';
+import {Action} from '../../../redux/actions/index.action';
+import {useDispatch} from 'react-redux';
 const Login = ({navigation}: any) => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
@@ -111,6 +111,12 @@ const Login = ({navigation}: any) => {
                   </Button>
                   <Button onPress={() => navigate.navigate('ResetPass')}>
                     Quên mật khẩu
+                  </Button>
+                </View>
+
+                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                  <Button onPress={() => navigate.navigate('FireBaseOTP')}>
+                    Đăng nhập bằng SMS
                   </Button>
                 </View>
               </View>
