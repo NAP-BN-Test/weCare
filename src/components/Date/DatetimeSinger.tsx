@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {Button} from 'react-native-paper';
 import {DatePickerModal} from 'react-native-paper-dates';
-import FormField from '../FormField/FormFieldComponent';
 import {TextInput} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';

@@ -1,5 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import * as constants from '../constants';
+import auth from '@react-native-firebase/auth';
 
 function act_alert_success(messages: string) {
   return {
@@ -64,6 +65,7 @@ function act_login(numberphone: any, password: any) {
 }
 
 function act_logout() {
+  auth().signOut();
   return (dispatch: any) => {
     let user: any = {
       userinfo: '',
@@ -73,7 +75,6 @@ function act_logout() {
     dispatch(logout(user));
   };
 }
-
 
 export const Action = {
   act_alert_error,

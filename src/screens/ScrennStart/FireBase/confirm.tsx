@@ -8,16 +8,31 @@ import * as Yup from 'yup';
 import {Formik} from 'formik';
 import FormField from '../../../components/FormField/FormFieldComponent';
 import stylesGlobal from '../../../assets/Css/cssGlobal.css';
+import { useDispatch } from 'react-redux';
+import { Action } from '../../../redux/actions/index.action';
+
 const VerifyAccountFireBase = ({route, navigation}: any) => {
+  const dispatch = useDispatch();
   const navigate = useNavigation();
   const [secureTextEntry, setsecureTextEntry] = useState(true);
   // console.log(navigation);
-  const {numberphone} = route.params;
+  const {numberphone} = route.params.numberphone;
+  const {confirmation} = route.params.confirmation;
   console.log(route.params);
 
   const Validation = Yup.object().shape({
     code: Yup.string().required('Nhập mã'),
   });
+
+  const submit = async (value: any)  => {
+    const result = await route.params.confirmation.confirm(value.code);
+    if (result) {
+      console.log('Chuyển trang');
+      dispatch(Action.act_login('0123456789', '123456'));
+    }
+    console.log('result', result);
+  }
+
   return (
     <View style={stylesGlobal.container}>
       <View style={stylesGlobal.footer}>
@@ -28,7 +43,7 @@ const VerifyAccountFireBase = ({route, navigation}: any) => {
             </Text>
           </View>
           <View style={stylesGlobal.row_center}>
-            <Text style={{fontWeight: 'bold'}}>{numberphone}</Text>
+            <Text style={{fontWeight: 'bold'}}>{route.params.numberphone}</Text>
           </View>
           <View
             style={{
@@ -49,8 +64,16 @@ const VerifyAccountFireBase = ({route, navigation}: any) => {
           initialValues={{
             code: '',
           }}
-          onSubmit={(values) => {
+          onSubmit={async (values) => {
             console.log(values);
+            submit(values);
+
+            // try {
+            //   const result = await confirmation.confirm(values.code);
+            //   console.log('result', result);
+            // } catch(error) {
+            //   console.log('Đăng nhập thất bại');
+            // }
           }}
           validationSchema={Validation}
           validateOnMount={true}>

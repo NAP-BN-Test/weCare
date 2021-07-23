@@ -23,8 +23,18 @@ const LoginFireBase = ({navigation}: any) => {
   }
 
   const signInWithPhoneNumber = async (number: any) => {
-    const confirmation = await auth().signInWithPhoneNumber(number);
+    const confirmation: any = await auth().signInWithPhoneNumber(number);
     setConfirm(confirmation);
+
+    if(confirmation._auth._authResult){
+      navigate.navigate('ConfirmOTP', {
+        numberphone: number,
+        confirmation: confirmation
+      });
+    }else{
+
+    }
+    
   };
   return (
     <View style={stylesGlobal.container}>
@@ -40,9 +50,7 @@ const LoginFireBase = ({navigation}: any) => {
             }}
             onSubmit={(values) => {
               console.log(values);
-              navigate.navigate('ConfirmOTP', {
-                numberphone: values.numberphone,
-              });
+              
               signInWithPhoneNumber("+84"+values.numberphone);
             }}
             // validationSchema={ValidationForm}
