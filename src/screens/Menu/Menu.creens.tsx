@@ -1,134 +1,98 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import stylesGlobal from '../../assets/Css/cssGlobal.css';
-import {Avatar, Button, Card, Title} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
+import React, {useRef, useState} from 'react';
+import {
+  ScrollView,
+  Switch,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+import {Avatar, ListItem} from 'react-native-elements';
+import {Button} from 'react-native-paper';
+import {useDispatch, useSelector} from 'react-redux';
+import stylesGlobal from '../../assets/Css/cssGlobal.css';
+import BaseIcon from '../../components/IconBase/IconBase';
+import ImagePicker from '../../components/ImagePicker/ImagePicker';
 import {Action} from '../../redux/actions/index.action';
-function Menu() {
+import {RootState} from '../../redux/reducers/index.reducer';
+import ListItemMenu from './ListItemMenu';
+function Menu({route, navigation}: any) {
+  const Auth: any = useSelector((state: RootState) => state.Auth);
   const navigate = useNavigation();
   const dispatch = useDispatch();
+  console.log(Auth);
+  
   return (
-    <View
-      style={[
-        stylesGlobal.container,
-
-        // {paddingBottom: 300}
-      ]}>
-      <View
-        style={[
-          stylesGlobal.container,
-          {paddingHorizontal: 10, paddingVertical: 10},
-        ]}>
-        <TouchableOpacity>
-          <View
-            style={[
-              stylesGlobal.action,
-              {flexDirection: 'row', marginBottom: 10},
-            ]}>
-            <Avatar.Text size={40} label="AD" />
-            <View style={{marginLeft: 10}}>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>Anh Dũng</Text>
-              <Text style={{}}>Xem thông tin tài khoản</Text>
-            </View>
+    <ScrollView style={styles.scroll}>
+      <TouchableOpacity onPress={() => navigate.navigate('profile')}>
+        <View style={styles.userRow}>
+          <View style={styles.userImage}>
+            <Avatar
+              rounded
+              size="large"
+              source={{
+                uri:
+                  Auth.userinfo.avatar.length > 0
+                    ? Auth.userinfo.avatar
+                    : 'https://thinkingschool.vn/wp-content/uploads/avatars/753/753-bpfull.jpg',
+              }}
+            />
           </View>
-        </TouchableOpacity>
+          <View>
+            <Text style={{fontSize: 16}}>
+              {Auth.userinfo.name.length > 0
+                ? Auth.userinfo.name
+                : 'Cập nhật thông tin'}
+            </Text>
+            <Text
+              style={{
+                color: 'gray',
+                fontSize: 16,
+              }}>
+              {Auth.userinfo.numberphone}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+      <ListItemMenu />
 
-        {/* Menu */}
-        <View
-          style={{
-            flexDirection: 'row',
-            marginBottom: 10,
-            justifyContent: 'space-between',
+      <View style={[stylesGlobal.input, {paddingHorizontal: 20}]}>
+        <Button
+          mode="contained"
+          // disabled={!isFormValid(isValid, touched)}
+          color="#adbac7"
+          onPress={() => {
+            dispatch(Action.act_logout());
           }}>
-          <View
-            style={{width: '48%', marginRight: 10, flexDirection: 'column'}}>
-            <TouchableOpacity>
-              <Card style={styles.card_content}>
-                <Card.Content>
-                  <View>
-                    <Title>Chức năng</Title>
-                  </View>
-                </Card.Content>
-              </Card>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <Card style={styles.card_content}>
-                <Card.Content>
-                  <View>
-                    <Title>Chức năng</Title>
-                  </View>
-                </Card.Content>
-              </Card>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <Card style={styles.card_content}>
-                <Card.Content>
-                  <View>
-                    <Title>Chức năng</Title>
-                  </View>
-                </Card.Content>
-              </Card>
-            </TouchableOpacity>
-          </View>
-
-          <View
-            style={{width: '48%', marginRight: 10, flexDirection: 'column'}}>
-            <TouchableOpacity>
-              <Card style={styles.card_content}>
-                <Card.Content>
-                  <View>
-                    <Title>Chức năng</Title>
-                    <Text>thông tin</Text>
-                  </View>
-                </Card.Content>
-              </Card>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <Card style={styles.card_content}>
-                <Card.Content>
-                  <View>
-                    <Title>Chức năng</Title>
-                  </View>
-                </Card.Content>
-              </Card>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <Card style={styles.card_content}>
-                <Card.Content>
-                  <View>
-                    <Title>Chức năng</Title>
-                    <Text>thông tin</Text>
-                  </View>
-                </Card.Content>
-              </Card>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/*  */}
-        <View style={stylesGlobal.input}>
-          <Button
-            mode="contained"
-            // disabled={!isFormValid(isValid, touched)}
-            onPress={() => {
-              dispatch(Action.act_logout());
-            }}>
-            Đăng xuất
-          </Button>
-        </View>
+          Đăng xuất
+        </Button>
       </View>
-    </View>
+
+      
+    </ScrollView>
   );
 }
 
 export default Menu;
 const styles = StyleSheet.create({
-  card_content: {
-    marginBottom: 10,
+  scroll: {
+    backgroundColor: 'white',
+  },
+  userRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingBottom: 8,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 6,
+  },
+  userImage: {
+    marginRight: 12,
+  },
+  listItemContainer: {
+    height: 55,
+    borderWidth: 0.5,
+    borderColor: '#ECECEC',
   },
 });

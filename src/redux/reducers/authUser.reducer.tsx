@@ -1,7 +1,14 @@
+import {User} from '../../types';
 import {GET_USER_INFO, LOGOUT} from '../constants/index';
 
-const initState: any = {
-  userinfo: '',
+const initState: User = {
+  userinfo: {
+    name: '',
+    date: '',
+    address: '',
+    numberphone: '',
+    avatar: '',
+  },
   accesstoken: '',
   permisson: '',
 };

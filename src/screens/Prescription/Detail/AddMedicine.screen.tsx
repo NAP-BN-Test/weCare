@@ -144,34 +144,6 @@ function AddMedicine({navigation}: any) {
               </View>
             </View>
 
-            {/* <View>
-            <MultiSelect
-              hideTags={false}
-              items={items}
-              uniqueKey="id"
-              ref={(component) => {
-                // this.multiSelect = component;
-              }}
-              onSelectedItemsChange={onSelectedItemsChange}
-              selectedItems={selectedItems}
-              selectText="     Chọn thuốc"
-              searchInputPlaceholderText="Tìm thuốc..."
-              onChangeInput={(text) => console.log(text)}
-              altFontFamily="ProximaNova-Light"
-              tagRemoveIconColor="#000"
-              tagBorderColor="#000"
-              tagTextColor="#000"
-              selectedItemTextColor="#000"
-              selectedItemIconColor="#000"
-              itemTextColor="#000"
-              displayKey="name"
-              searchInputStyle={{color: '#000'}}
-              submitButtonColor="#6000ec"
-              submitButtonText="Xong"
-              hideSubmitButton
-            />
-          </View> */}
-
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <View style={{width: '90%'}}>
@@ -199,6 +171,7 @@ function AddMedicine({navigation}: any) {
               <SearchDropDown
                 onPressSearchDropDown={onPressSearchDropDown}
                 dataSource={filtered}
+                
               />
             )}
 
@@ -254,14 +227,6 @@ function AddMedicine({navigation}: any) {
           </View>
 
           <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />
-          {/* {localFile?.path.length > 10 ? (
-          <Image
-            style={{height: 200, width: 200}}
-            source={{
-              uri: localFile?.path,
-            }}
-          />
-        ) : null} */}
         </View>
       </View>
     </ScrollView>

@@ -10,6 +10,8 @@ import AddMedicine from '../../screens/Prescription/Detail/AddMedicine.screen';
 import {Text} from 'react-native';
 import AddPrescription from '../../screens/Prescription/AddPrescription.screen';
 import ListMedicine from '../../screens/Prescription/Detail/ListMedicine.screen';
+import Profile from '../../screens/Profile/Profile';
+import ProfileFamily from '../../screens/Profile/ProfileFamily/ProfileFamily';
 const MainStack = createStackNavigator();
 
 const MainStackScreen = () => {
@@ -95,6 +97,42 @@ const MainStackScreen = () => {
           // headerTransparent: true,
         }}
         component={ListMedicine}
+      />
+
+      <MainStack.Screen
+        name="profile"
+        options={{
+          title: 'Thông tin cá nhân',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        component={Profile}
+      />
+
+      <MainStack.Screen
+        name="profilefamily"
+        options={{
+          title: 'Thông tin thành viên',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        component={ProfileFamily}
       />
     </MainStack.Navigator>
   );

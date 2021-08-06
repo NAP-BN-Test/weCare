@@ -6,6 +6,7 @@ import {
   View,
   Text,
   Image,
+  
 } from 'react-native';
 
 export default function SearchDropDown(props: any) {
@@ -21,13 +22,16 @@ export default function SearchDropDown(props: any) {
                   key={item.id}>
                   <View style={[styles.subContainer]}>
                     <View style={styles.itemView}>
-                      <Image
-                        style={{height: 50, width: 50}}
-                        source={{
-                          uri: item.img,
-                        }}
-                      />
-                      <Text style={styles.itemText}>{item.name}</Text>
+                      {item.img ? (
+                        <Image
+                          style={{height: 50, width: 50}}
+                          source={{
+                            uri: item.img,
+                          }}
+                        />
+                      ) : null}
+
+                      <Text style={[styles.itemText, {fontSize: 20}]}>{item.name}</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -75,7 +79,6 @@ const styles = StyleSheet.create({
   itemText: {
     color: 'black',
     paddingHorizontal: 10,
-    fontSize: 20,
   },
   noResultView: {
     alignSelf: 'center',

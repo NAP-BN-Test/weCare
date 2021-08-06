@@ -1,6 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Error404 from '../../screens/Error404/Error404';
+import Profile from '../../screens/Profile/Profile';
+import Family from '../../screens/Family/Family';
 
 const FamilyStack = createStackNavigator();
 
@@ -10,7 +12,7 @@ const FamilyStackScreen = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <FamilyStack.Screen name="family" component={Error404} />
+      <FamilyStack.Screen name="family" component={Family} />
     </FamilyStack.Navigator>
   );
 };

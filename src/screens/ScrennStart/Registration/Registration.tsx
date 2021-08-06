@@ -8,10 +8,33 @@ import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 import ValidationForm from '../../../assets/Validation/validationRegistration';
 import FormField from '../../../components/FormField/FormFieldComponent';
+import { Action } from '../../../redux/actions/index.action';
+import { useDispatch } from 'react-redux';
+import firebaseSetup from '../../../assets/FireBaseOTP/setup';
 const Registration = ({navigation}: any) => {
   const navigate = useNavigation();
+  const {auth} = firebaseSetup();
   const [secureTextEntry, setsecureTextEntry] = useState(true);
   const [secureTextEntryCF, setsecureTextEntryCF] = useState(true);
+  const dispatch = useDispatch();
+  
+  const [confirm, setConfirm] = useState(null as any);
+  if (!confirm) {
+  }
+  const signInWithPhoneNumber = async (number: any) => {
+    const confirmation: any = await auth().signInWithPhoneNumber(number);
+    setConfirm(confirmation);
+
+    if(confirmation._auth._authResult){
+      navigate.navigate('ConfirmOTP', {
+        numberphone: number,
+        confirmation: confirmation
+      });
+    }else{
+
+    }
+    
+  };
   return (
     <View style={stylesGlobal.container}>
       <View style={stylesGlobal.footer}>
@@ -30,6 +53,12 @@ const Registration = ({navigation}: any) => {
           }}
           onSubmit={(values) => {
             console.log(values);
+            if (values.password === values.passwordConfirm) {
+              console.log('Chuyển qua xác minh số điện thoại');
+              signInWithPhoneNumber("+84"+values.numberphone);
+            } else {
+              dispatch(Action.act_alert_error('Mật khẩu không khớp'));
+            }
           }}
           validationSchema={ValidationForm}
           validateOnMount={true}>

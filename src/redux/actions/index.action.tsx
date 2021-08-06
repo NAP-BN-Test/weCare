@@ -38,7 +38,14 @@ function act_login(numberphone: any, password: any) {
     if (body.numberphone === tk.numberphone && body.password === tk.password) {
       console.log('Đăng nhập thành công');
       let user: any = {
-        userinfo: 'Dung',
+        userinfo: {
+          name: '',
+          date: '',
+          address: '',
+          numberphone: '0123456789',
+          avatar:
+            '',
+        },
         accesstoken: '12345678',
         permisson: 'admin',
       };
