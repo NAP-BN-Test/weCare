@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import stylesGlobal from '../../../assets/Css/cssGlobal.css';
 import * as Yup from 'yup';
@@ -9,6 +9,7 @@ import FormField from '../../../components/FormField/FormFieldComponent';
 import DateSingle from '../../../components/Date/DatetimeSinger';
 import {Button} from 'react-native-paper';
 import {RootState} from '../../../redux/reducers/index.reducer';
+import {RadioButton} from 'react-native-paper';
 function Form({navigate, handleSubmit}: any) {
   const dispatch = useDispatch();
   const Validation = Yup.object().shape({
@@ -18,7 +19,7 @@ function Form({navigate, handleSubmit}: any) {
 
   const Auth: any = useSelector((state: RootState) => state.Auth);
   console.log(Auth);
-
+  const [value, setValue] = useState('first');
   return (
     <View style={[stylesGlobal.container]}>
       <View style={stylesGlobal.footer}>
@@ -36,6 +37,7 @@ function Form({navigate, handleSubmit}: any) {
               name: Auth.userinfo.name,
               date: Auth.userinfo.date ? Auth.userinfo.date : new Date(),
               address: Auth.userinfo.address,
+              gender: Auth.userinfo.gender,
               numberphone: '0123456789',
               avatar: '',
             }}
@@ -97,6 +99,21 @@ function Form({navigate, handleSubmit}: any) {
                     errors={errors}
                   />
                 </View>
+
+                <RadioButton.Group
+                  onValueChange={handleChange('gender')}
+                  value={values.gender}>
+                  <View style={{flexDirection: 'row'}}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <RadioButton value="Nam" />
+                      <Text>Nam</Text>
+                    </View>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <RadioButton value="Nữ" />
+                      <Text>Nữ</Text>
+                    </View>
+                  </View>
+                </RadioButton.Group>
 
                 <View style={stylesGlobal.input}>
                   <Button

@@ -31,7 +31,7 @@ const MainStackScreen = () => {
         <MainStack.Screen
           name="formProfile"
           options={{
-            title: 'Thông tin cá nhân',
+            title: 'Thêm thông tin cá nhân',
             headerStyle: {
               backgroundColor: '#6000ec',
             },
@@ -46,6 +46,24 @@ const MainStackScreen = () => {
           component={ProfilePersonal}
         />
       )}
+
+      <MainStack.Screen
+        name="UpdateProfile"
+        options={{
+          title: 'Cập nhật thông tin cá nhân',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        component={ProfilePersonal}
+      />
 
       <MainStack.Screen
         options={{headerTitle: (props) => <Hearder {...props} />}}

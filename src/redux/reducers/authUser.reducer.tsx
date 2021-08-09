@@ -7,6 +7,7 @@ const initState: User = {
     date: '',
     address: '',
     numberphone: '',
+    gender: '',
     avatar: '',
   },
   accesstoken: '',

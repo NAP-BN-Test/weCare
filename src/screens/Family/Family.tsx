@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/reducers/index.reducer';
 import Profile from '../Profile/Profile';
 import Toast from 'react-native-simple-toast';
-import SearchDropDown from '../../components/SearchDropDown/SearchDropDown';
+import SearchDropDownFamily from '../../components/SearchDropDown/SearchDropDownFamily';
 import {useNavigation} from '@react-navigation/native';
 import {ListItem, Icon} from 'react-native-elements';
 import {Button} from 'react-native-elements/dist/buttons/Button';
@@ -136,10 +136,9 @@ function Family({navigation}: any) {
             </View>
 
             {searching && (
-              <SearchDropDown
+              <SearchDropDownFamily
                 onPressSearchDropDown={onPressSearchDropDown}
                 dataSource={filtered}
-                textImage="avatar"
               />
             )}
 

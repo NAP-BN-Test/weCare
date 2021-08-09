@@ -43,6 +43,7 @@ function act_login(numberphone: any, password: any) {
           date: '',
           address: '',
           numberphone: '0123456789',
+          gender: 'Nam',
           avatar:
             '',
         },

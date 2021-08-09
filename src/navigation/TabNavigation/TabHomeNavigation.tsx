@@ -3,13 +3,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackScreen from '../StackScreen/HomeStackScreen';
 import FamilyStackScreen from '../StackScreen/FamilyStackScreen';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../redux/reducers/index.reducer';
 import MenuStackScreen from '../StackScreen/MenuStackScreen';
 import PrescriptionStackScreen from '../StackScreen/PrescriptionStackScreen';
-import Error404 from '../../screens/Error404/Error404';
-import {View} from 'react-native';
-import Hearder from '../../components/Hearders/Hearder';
+import Search from '../../screens/Search/Search';
 const Tab = createBottomTabNavigator();
 
 const TabHomeNavigation = () => {
@@ -56,7 +52,7 @@ const TabHomeNavigation = () => {
       }}>
       <Tab.Screen name="Home" component={HomeStackScreen} />
       <Tab.Screen name="Prescription" component={PrescriptionStackScreen} />
-      <Tab.Screen name="Search" component={Error404} />
+      <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Family" component={FamilyStackScreen} />
       {/* <Tab.Screen name="User" component={HomeStackScreen} /> */}
       <Tab.Screen name="Menu" component={MenuStackScreen} />

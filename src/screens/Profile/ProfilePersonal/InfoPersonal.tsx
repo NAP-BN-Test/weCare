@@ -1,4 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
+import moment from 'moment';
 import React, {useRef, useState} from 'react';
 import {
   View,
@@ -10,16 +11,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Card, Icon, ListItem} from 'react-native-elements';
-import {Button} from 'react-native-elements/dist/buttons/Button';
 import {ScrollView} from 'react-native-gesture-handler';
-import {Chip} from 'react-native-paper';
+import {Button, Chip} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
+import stylesGlobal from '../../../assets/Css/cssGlobal.css';
 import ImagePicker from '../../../components/ImagePicker/ImagePicker';
 import {Action} from '../../../redux/actions/index.action';
 import {RootState} from '../../../redux/reducers/index.reducer';
 import Form from '../FormProfile/form';
 
-function ProfilePersonal({navigation}: any) {
+function InfoPersonal({navigation}: any) {
   const Auth: any = useSelector((state: RootState) => state.Auth);
   console.log(Auth);
 
@@ -31,18 +32,18 @@ function ProfilePersonal({navigation}: any) {
     setLocalFile(image);
     console.log(image);
 
-    // let user = {
-    //   userinfo: {
-    //     ...Auth.userinfo,
-    //     avatar: image.path,
-    //   },
-    //   accesstoken: '12345678',
-    //   permisson: 'admin',
-    // };
+    let user = {
+      userinfo: {
+        ...Auth.userinfo,
+        avatar: image.path,
+      },
+      accesstoken: '12345678',
+      permisson: 'admin',
+    };
 
-    // console.log(user);
+    console.log(user);
 
-    // dispatch(Action.get_user_info(user));
+    dispatch(Action.get_user_info(user));
   };
   const openSheet = () => {
     if (sheetRef.current) {
@@ -57,25 +58,6 @@ function ProfilePersonal({navigation}: any) {
   };
 
   const navigate = useNavigation();
-  const handleSubmit = (value: any) => {
-    console.log('handleSubmit', value);
-    let user = {
-      userinfo: {
-        name: value.name,
-        date: value.date,
-        address: value.address,
-        avatar: localFile?.path != null ? localFile.path : Auth.userinfo.avatar,
-        numberphone: Auth.userinfo.numberphone,
-        gender: value.gender,
-      },
-      accesstoken: Auth.accesstoken,
-      permisson: Auth.permisson,
-    };
-
-    console.log(user);
-    dispatch(Action.get_user_info(user));
-    dispatch(Action.act_alert_success('Cập nhật thông tin thành công'));
-  };
 
   return (
     <ScrollView style={styles.scroll}>
@@ -104,12 +86,12 @@ function ProfilePersonal({navigation}: any) {
                   />
                 </TouchableOpacity>
 
-                {Auth.userinfo.name.length < 0 ?? (
+                {Auth.userinfo.name.length > 0 ? (
                   <>
                     <Text style={styles.userNameText}>
                       {Auth.userinfo.name}
                     </Text>
-                    <View style={styles.userAddressRow}>
+                    {/* <View style={styles.userAddressRow}>
                       <View>
                         <Icon
                           name="place"
@@ -123,9 +105,9 @@ function ProfilePersonal({navigation}: any) {
                           {Auth.userinfo.address}
                         </Text>
                       </View>
-                    </View>
+                    </View> */}
                   </>
-                )}
+                ) : null}
               </View>
             </ImageBackground>
           </View>
@@ -134,13 +116,78 @@ function ProfilePersonal({navigation}: any) {
         <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />
       </View>
 
-      <Form handleSubmit={handleSubmit} />
+      <View style={{paddingHorizontal: 20}}>
+        <View style={styles.Itemfooter}>
+          <View style={{width: '30%'}}>
+            <Text style={{fontWeight: 'bold'}}>Tên WeCare:</Text>
+          </View>
+
+          <View style={{width: '70%'}}>
+            <Text style={{color: 'gray'}}>{Auth.userinfo.name}</Text>
+          </View>
+        </View>
+
+        <View style={styles.Itemfooter}>
+          <View style={{width: '30%'}}>
+            <Text style={{fontWeight: 'bold'}}>Giới tính:</Text>
+          </View>
+
+          <View style={{width: '70%'}}>
+            <Text style={{color: 'gray'}}>{Auth.userinfo.gender}</Text>
+          </View>
+        </View>
+
+        <View style={styles.Itemfooter}>
+          <View style={{width: '30%'}}>
+            <Text style={{fontWeight: 'bold'}}>Ngày sinh:</Text>
+          </View>
+
+          <View style={{width: '70%'}}>
+            <Text style={{color: 'gray'}}>
+              {moment(Auth.userinfo.date).format('DD-MM-YYYY')}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.Itemfooter}>
+          <View style={{width: '30%'}}>
+            <Text style={{fontWeight: 'bold'}}>Địa chỉ:</Text>
+          </View>
+
+          <View style={{width: '70%'}}>
+            <Text style={{color: 'gray'}}>{Auth.userinfo.address}</Text>
+          </View>
+        </View>
+
+        <View style={styles.Itemfooter}>
+          <View style={{width: '30%'}}>
+            <Text style={{fontWeight: 'bold'}}>Số điện thoại:</Text>
+          </View>
+
+          <View style={{width: '70%'}}>
+            <Text style={{color: 'gray'}}>{Auth.userinfo.numberphone}</Text>
+          </View>
+        </View>
+        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
+          <Button
+            mode="contained"
+            onPress={() => navigate.navigate('UpdateProfile')}>
+            Đổi thông tin
+          </Button>
+        </View>
+      </View>
     </ScrollView>
   );
 }
 
-export default ProfilePersonal;
+export default InfoPersonal;
 const styles = StyleSheet.create({
+  Itemfooter: {
+    flexDirection: 'row',
+    paddingVertical: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f2f2f2',
+  },
   cardContainer: {
     backgroundColor: '#FFF',
     borderWidth: 0,
