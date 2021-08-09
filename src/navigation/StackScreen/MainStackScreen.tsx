@@ -48,24 +48,6 @@ const MainStackScreen = () => {
       )}
 
       <MainStack.Screen
-        name="UpdateProfile"
-        options={{
-          title: 'Cập nhật thông tin cá nhân',
-          headerStyle: {
-            backgroundColor: '#6000ec',
-          },
-          headerTitleAlign: 'center',
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            // fontWeight: 'bold',
-          },
-          // headerRight: ()=> <Text>abc</Text>
-          // headerTransparent: true,
-        }}
-        component={ProfilePersonal}
-      />
-
-      <MainStack.Screen
         options={{headerTitle: (props) => <Hearder {...props} />}}
         name="main"
         component={TabHomeNavigation}
@@ -176,6 +158,24 @@ const MainStackScreen = () => {
           // headerTransparent: true,
         }}
         component={ProfileFamily}
+      />
+
+      <MainStack.Screen
+        name="UpdateProfile"
+        options={{
+          title: 'Cập nhật thông tin cá nhân',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        component={ProfilePersonal}
       />
     </MainStack.Navigator>
   );
