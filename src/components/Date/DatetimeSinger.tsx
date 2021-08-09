@@ -4,6 +4,7 @@ import {TextInput} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import {StyleSheet, Text} from 'react-native';
+import {useEffect} from 'react';
 const DateSingle = ({
   label,
   title,
@@ -29,10 +30,13 @@ const DateSingle = ({
       setOpen(false);
       setDate(params.date);
       setFieldValue(label, params.date);
-      
     },
     [setOpen, setDate],
   );
+
+  useEffect(() => {
+    setDate(values[label]);
+  }, [values[label]]);
 
   return (
     <>

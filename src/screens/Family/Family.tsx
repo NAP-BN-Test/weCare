@@ -106,7 +106,7 @@ function Family({navigation}: any) {
   const deleteItems = (items: any) => {
     setselectedItems(selectedItems.filter((item: any) => item.id !== items.id));
   };
-  return Auth.userinfo.name.length > 0 ? (
+  return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={stylesGlobal.container}>
         <View
@@ -204,8 +204,6 @@ function Family({navigation}: any) {
         </View>
       </View>
     </ScrollView>
-  ) : (
-    <Profile />
   );
 }
 

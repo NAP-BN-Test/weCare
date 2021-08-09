@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import ImagePicker from '../../../components/ImagePicker/ImagePicker';
 import {Action} from '../../../redux/actions/index.action';
 import {RootState} from '../../../redux/reducers/index.reducer';
+import Form from '../FormProfile/form';
 
 function ProfilePersonal({navigation}: any) {
   const Auth: any = useSelector((state: RootState) => state.Auth);
@@ -30,18 +31,18 @@ function ProfilePersonal({navigation}: any) {
     setLocalFile(image);
     console.log(image);
 
-    let user = {
-      userinfo: {
-        ...Auth.userinfo,
-        avatar: image.path,
-      },
-      accesstoken: '12345678',
-      permisson: 'admin',
-    };
+    // let user = {
+    //   userinfo: {
+    //     ...Auth.userinfo,
+    //     avatar: image.path,
+    //   },
+    //   accesstoken: '12345678',
+    //   permisson: 'admin',
+    // };
 
-    console.log(user);
+    // console.log(user);
 
-    dispatch(Action.get_user_info(user));
+    // dispatch(Action.get_user_info(user));
   };
   const openSheet = () => {
     if (sheetRef.current) {
@@ -56,26 +57,25 @@ function ProfilePersonal({navigation}: any) {
   };
 
   const navigate = useNavigation();
-  const [arrayNote, setarrayNote] = useState([
-    {
-      id: '1',
-      date: '01/02/2021',
-      title: 'Đơn số 1',
-    },
+  const handleSubmit = (value: any) => {
+    console.log('handleSubmit', value);
+    let user = {
+      userinfo: {
+        name: value.name,
+        date: value.date,
+        address: value.address,
+        avatar: localFile?.path != null ? localFile.path : Auth.userinfo.avatar,
+        numberphone: Auth.userinfo.numberphone,
+      },
+      accesstoken: Auth.accesstoken,
+      permisson: Auth.permisson,
+    };
 
-    {
-      id: '2',
-      date: '01/02/2021',
-      title: 'Đơn số 2',
-    },
+    console.log(user);
+    dispatch(Action.get_user_info(user));
+    dispatch(Action.act_alert_success('Cập nhật thông tin thành công'));
+  };
 
-    {
-      id: '3',
-      date: '01/02/2021',
-      title: 'Đơn số 3',
-    },
-    
-  ]);
   return (
     <ScrollView style={styles.scroll}>
       <View style={styles.container}>
@@ -94,106 +94,46 @@ function ProfilePersonal({navigation}: any) {
                     style={styles.userImage}
                     source={{
                       uri:
-                        Auth.userinfo?.avatar?.length > 0
+                        localFile?.path.length > 0
+                          ? localFile.path
+                          : Auth.userinfo?.avatar?.length > 0
                           ? Auth.userinfo.avatar
                           : 'https://thinkingschool.vn/wp-content/uploads/avatars/753/753-bpfull.jpg',
                     }}
                   />
                 </TouchableOpacity>
 
-                <Text style={styles.userNameText}>{Auth.userinfo.name}</Text>
-                <View style={styles.userAddressRow}>
-                  <View>
-                    <Icon
-                      name="place"
-                      underlayColor="transparent"
-                      iconStyle={styles.placeIcon}
-                      //   onPress={this.onPressPlace}
-                    />
-                  </View>
-                  <View style={styles.userCityRow}>
-                    <Text style={styles.userCityText}>
-                      {Auth.userinfo.address}
+                {Auth.userinfo.name.length < 0 ?? (
+                  <>
+                    <Text style={styles.userNameText}>
+                      {Auth.userinfo.name}
                     </Text>
-                  </View>
-                </View>
+                    <View style={styles.userAddressRow}>
+                      <View>
+                        <Icon
+                          name="place"
+                          underlayColor="transparent"
+                          iconStyle={styles.placeIcon}
+                          //   onPress={this.onPressPlace}
+                        />
+                      </View>
+                      <View style={styles.userCityRow}>
+                        <Text style={styles.userCityText}>
+                          {Auth.userinfo.address}
+                        </Text>
+                      </View>
+                    </View>
+                  </>
+                )}
               </View>
             </ImageBackground>
           </View>
         </Card>
 
-        <View
-          style={{
-            paddingTop: 20,
-            paddingBottom: 12,
-            backgroundColor: '#F4F5F4',
-          }}>
-          <Text
-            style={{
-              fontSize: 16,
-              marginLeft: 20,
-              color: 'gray',
-              fontWeight: '500',
-            }}>
-            Các đơn thuốc đang sử dụng
-          </Text>
-        </View>
-
-        {arrayNote.length > 0 ? (
-          arrayNote.map((items: any, index: any) => (
-            <ListItem.Swipeable
-              bottomDivider
-              leftContent={
-                <Button
-                  title="Info"
-                  icon={{name: 'info', color: 'white'}}
-                  buttonStyle={{
-                    minHeight: '100%',
-                    backgroundColor: 'orange',
-                  }}
-                  onPress={() =>
-                    navigate.navigate('detailPrescription', {items})
-                  }
-                />
-              }
-              rightContent={
-                <Button
-                  title="Nhắc"
-                  icon={{name: 'notifications', color: 'white'}}
-                  buttonStyle={{
-                    minHeight: '100%',
-                    backgroundColor: 'orange',
-                  }}
-                />
-              }>
-              {/* <Avatar.Image
-                  size={32}
-                  source={{
-                    uri: items.avatar,
-                  }}
-                /> */}
-              <ListItem.Content>
-                <ListItem.Title>
-                  {' '}
-                  {items.title + ' - ' + items.date}
-                </ListItem.Title>
-              </ListItem.Content>
-              {/* <ListItem.Chevron /> */}
-            </ListItem.Swipeable>
-          ))
-        ) : (
-          <View>
-            <Chip
-              style={{backgroundColor: '#fff'}}
-              mode="outlined"
-              // onClose={() => console.log('đóng')}
-            >
-              Chưa có đơn thuốc nào!
-            </Chip>
-          </View>
-        )}
         <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />
       </View>
+
+      <Form handleSubmit={handleSubmit} />
     </ScrollView>
   );
 }

@@ -12,9 +12,14 @@ import AddPrescription from '../../screens/Prescription/AddPrescription.screen';
 import ListMedicine from '../../screens/Prescription/Detail/ListMedicine.screen';
 import Profile from '../../screens/Profile/Profile';
 import ProfileFamily from '../../screens/Profile/ProfileFamily/ProfileFamily';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../redux/reducers/index.reducer';
+import Form from '../../screens/Profile/FormProfile/form';
+import ProfilePersonal from '../../screens/Profile/ProfilePersonal/ProfilePersonal';
 const MainStack = createStackNavigator();
 
 const MainStackScreen = () => {
+  const Auth: any = useSelector((state: RootState) => state.Auth);
   return (
     <MainStack.Navigator
       screenOptions={
@@ -22,6 +27,26 @@ const MainStackScreen = () => {
           // headerShown: false,
         }
       }>
+      {Auth.userinfo.name.length > 0 ? null : (
+        <MainStack.Screen
+          name="formProfile"
+          options={{
+            title: 'Thông tin cá nhân',
+            headerStyle: {
+              backgroundColor: '#6000ec',
+            },
+            headerTitleAlign: 'center',
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              // fontWeight: 'bold',
+            },
+            // headerRight: ()=> <Text>abc</Text>
+            // headerTransparent: true,
+          }}
+          component={ProfilePersonal}
+        />
+      )}
+
       <MainStack.Screen
         options={{headerTitle: (props) => <Hearder {...props} />}}
         name="main"

@@ -12,16 +12,9 @@ import {Action} from '../../redux/actions/index.action';
 import Form from './FormProfile/form';
 import ProfilePersonal from './ProfilePersonal/ProfilePersonal';
 function Profile({navigation}: any) {
-  const Auth: any = useSelector((state: RootState) => state.Auth);
   return (
     <View style={[stylesGlobal.container]}>
-      {Auth.userinfo.name.length > 0 ? (
-        <ProfilePersonal />
-      ) : (
-        <View style={stylesGlobal.footer}>
-          <Form />
-        </View>
-      )}
+      <ProfilePersonal />
     </View>
   );
 }
