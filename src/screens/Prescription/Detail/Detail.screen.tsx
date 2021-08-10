@@ -128,7 +128,7 @@ function Detail({navigation}: any) {
                       </View>
                       <View style={{width: '80%'}}>
                         <Title>{data.item.name}</Title>
-                        <Text>
+                        {/* <Text>
                           <Text style={{fontWeight: 'bold'}}>Thành phần</Text>:{' '}
                           {data.item.Ingredient}{' '}
                         </Text>
@@ -139,9 +139,9 @@ function Detail({navigation}: any) {
                         <Text>
                           <Text style={{fontWeight: 'bold'}}>Cách dùng</Text>:{' '}
                           {data.item.usage}{' '}
-                        </Text>
+                        </Text> */}
 
-                        {/* <Text>
+                        <Text>
                           <Text style={{fontWeight: 'bold'}}>
                             Thời gian uống:{' '}
                           </Text>
@@ -151,7 +151,7 @@ function Detail({navigation}: any) {
                         <Text>
                           <Text style={{fontWeight: 'bold'}}>Tần suất: </Text>
                           {data.item.Frequency}
-                        </Text> */}
+                        </Text>
                       </View>
                     </View>
                   </Card.Content>
