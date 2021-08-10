@@ -10,6 +10,7 @@ import {useDispatch} from 'react-redux';
 import stylesGlobal from '../../assets/Css/cssGlobal.css';
 import SearchDropDown from '../../components/SearchDropDown/SearchDropDown';
 import ImagePicker from '../../components/ImagePicker/ImagePicker';
+import ItemSearch from './Item/ItemSearch';
 // import {RNCamera} from 'react-native-camera';
 function Search({navigation}: any) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -135,13 +136,13 @@ function Search({navigation}: any) {
             {paddingHorizontal: 10, paddingVertical: 10},
           ]}>
           <View>
-            <View style={{flexDirection: 'column'}}>
+            {/* <View style={{flexDirection: 'column'}}>
               <View style={[stylesGlobal.row_center, {marginVertical: 10}]}>
                 <Text style={{fontWeight: 'bold'}}>
                   Nhập tên thuốc hoặc chụp ảnh thuốc{' '}
                 </Text>
               </View>
-            </View>
+            </View> */}
 
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -166,12 +167,7 @@ function Search({navigation}: any) {
               </View>
             </View>
 
-            {searching && (
-              <SearchDropDown
-                onPressSearchDropDown={onPressSearchDropDown}
-                dataSource={filtered}
-              />
-            )}
+            {searching && <ItemSearch />}
           </View>
 
           <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />

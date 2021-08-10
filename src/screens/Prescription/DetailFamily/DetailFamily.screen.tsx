@@ -12,7 +12,7 @@ import BtnPlus from '../../../components/Btn/BtnPlusCompent';
 const wait = (timeout: any) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
-function Detail({navigation}: any) {
+function DetailFamily({navigation}: any) {
   const [searchQuery, setSearchQuery] = React.useState('');
   const navigate = useNavigation();
   const [refreshing, setRefreshing] = React.useState(false);
@@ -129,19 +129,6 @@ function Detail({navigation}: any) {
                       <View style={{width: '80%'}}>
                         <Title>{data.item.name}</Title>
                         <Text>
-                          <Text style={{fontWeight: 'bold'}}>Thành phần</Text>:{' '}
-                          {data.item.Ingredient}{' '}
-                        </Text>
-                        <Text>
-                          <Text style={{fontWeight: 'bold'}}>Công dụng</Text>:{' '}
-                          {data.item.func}{' '}
-                        </Text>
-                        <Text>
-                          <Text style={{fontWeight: 'bold'}}>Cách dùng</Text>:{' '}
-                          {data.item.usage}{' '}
-                        </Text>
-
-                        {/* <Text>
                           <Text style={{fontWeight: 'bold'}}>
                             Thời gian uống:{' '}
                           </Text>
@@ -151,7 +138,7 @@ function Detail({navigation}: any) {
                         <Text>
                           <Text style={{fontWeight: 'bold'}}>Tần suất: </Text>
                           {data.item.Frequency}
-                        </Text> */}
+                        </Text>
                       </View>
                     </View>
                   </Card.Content>
@@ -167,8 +154,13 @@ function Detail({navigation}: any) {
                     stylesPrescription.backLeftBtn,
                     stylesPrescription.card_content,
                   ]}
-                  onPress={() => deleteRow(rowMap, data.item.id)}>
-                  <MaterialIcons name="delete" size={28} color="red" />
+                  //   onPress={() => deleteRow(rowMap, data.item.id)}
+                >
+                  <MaterialIcons
+                    name="notifications"
+                    size={28}
+                    color="orange"
+                  />
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -177,8 +169,13 @@ function Detail({navigation}: any) {
                     stylesPrescription.backRightBtnRight,
                     stylesPrescription.card_content,
                   ]}
-                  onPress={() => deleteRow(rowMap, data.item.id)}>
-                  <MaterialIcons name="delete" size={28} color="red" />
+                  //   onPress={() => deleteRow(rowMap, data.item.id)}
+                >
+                  <MaterialIcons
+                    name="notifications"
+                    size={28}
+                    color="orange"
+                  />
                 </TouchableOpacity>
               </View>
             )}
@@ -187,16 +184,16 @@ function Detail({navigation}: any) {
           />
           <View style={{width: '100%', height: 60}}></View>
         </ScrollView>
-        <BtnPlus
+        {/* <BtnPlus
           icon="plus"
           actions={[]}
           onPress={() => {
             navigate.navigate('addMedicine');
           }}
-        />
+        /> */}
       </View>
     </View>
   );
 }
 
-export default Detail;
+export default DetailFamily;

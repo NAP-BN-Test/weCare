@@ -106,7 +106,7 @@ function ProfileFamily({route, navigation}: any) {
                     backgroundColor: 'orange',
                   }}
                   onPress={() =>
-                    navigate.navigate('detailPrescription', {items})
+                    navigate.navigate('detailPrescriptionFamily', {items})
                   }
                 />
               }

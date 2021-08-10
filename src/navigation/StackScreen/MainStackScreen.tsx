@@ -16,6 +16,8 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../redux/reducers/index.reducer';
 import Form from '../../screens/Profile/FormProfile/form';
 import ProfilePersonal from '../../screens/Profile/ProfilePersonal/ProfilePersonal';
+import DetailFamily from '../../screens/Prescription/DetailFamily/DetailFamily.screen';
+import AddMedicineSearch from '../../screens/Search/AddMedicine/AddMedicineSearch';
 const MainStack = createStackNavigator();
 
 const MainStackScreen = () => {
@@ -68,6 +70,24 @@ const MainStackScreen = () => {
           // headerTransparent: true,
         }}
         component={Detail}
+      />
+
+      <MainStack.Screen
+        name="detailPrescriptionFamily"
+        options={{
+          title: 'Thông tin đơn thuốc',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        component={DetailFamily}
       />
 
       <MainStack.Screen
@@ -176,6 +196,24 @@ const MainStackScreen = () => {
           // headerTransparent: true,
         }}
         component={ProfilePersonal}
+      />
+
+      <MainStack.Screen
+        name="AddMedicineSearch"
+        options={{
+          title: 'Thêm thuốc vào đơn',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        component={AddMedicineSearch}
       />
     </MainStack.Navigator>
   );
