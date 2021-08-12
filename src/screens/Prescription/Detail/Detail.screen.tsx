@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import stylesGlobal from '../../../assets/Css/cssGlobal.css';
 import stylesPrescription from '../Prescription.css';
 import BtnPlus from '../../../components/Btn/BtnPlusCompent';
+import AddEditTime from '../../../components/ManageTime/AddTime';
 const wait = (timeout: any) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
@@ -31,8 +32,19 @@ function Detail({navigation}: any) {
       func: ' Đau đầu, đau nửa đầu, đau lưng, đau răng...',
       img:
         'https://i-cf65ch.gskstatic.com/content/dam/cf-consumer-healthcare/panadol/vi_vn/vietnamproduct/panadol_regular_pack_shot_blue/product_detail/Desktop-455x455.png?auto=format',
-      time: '18:00',
-      Frequency: 'Thứ 2, thứ 3, thứ 4',
+      time: [
+        {hours: 4, minutes: 23},
+        {hours: 4, minutes: 45},
+      ],
+      frequency: [
+        {name: 'Thứ 2', stt: true, name2: 'Th2'},
+        {name: 'Thứ 3', stt: true, name2: 'Th3'},
+        {name: 'Thứ 4', stt: true, name2: 'Th4'},
+        {name: 'Thứ 5', stt: true, name2: 'Th5'},
+        {name: 'Thứ 6', stt: true, name2: 'Th6'},
+        {name: 'Thứ 7', stt: true, name2: 'Th7'},
+        {name: 'Chủ nhật', stt: true, name2: 'CN'},
+      ],
     },
 
     {
@@ -45,8 +57,16 @@ function Detail({navigation}: any) {
       func: 'Albendazole có tác dụng điều trị nhiễm sán dây',
       img:
         'https://truongcaodangduocsaigon.net/wp-content/uploads/2020/08/duoc-si-truong-duoc-sai-gon-chia-se-ve-thuoc-albendazole.jpg',
-      time: '06:00',
-      Frequency: 'Thứ 2, thứ 3, thứ 4',
+      time: [{hours: 5, minutes: 23}],
+      frequency: [
+        {name: 'Thứ 2', stt: true, name2: 'Th2'},
+        {name: 'Thứ 3', stt: false, name2: 'Th3'},
+        {name: 'Thứ 4', stt: false, name2: 'Th4'},
+        {name: 'Thứ 5', stt: true, name2: 'Th5'},
+        {name: 'Thứ 6', stt: false, name2: 'Th6'},
+        {name: 'Thứ 7', stt: false, name2: 'Th7'},
+        {name: 'Chủ nhật', stt: true, name2: 'CN'},
+      ],
     },
 
     {
@@ -60,8 +80,20 @@ function Detail({navigation}: any) {
         'Chống viêm, chống dị ứng và ức chế miễn dịch. Tác dụng đến cân bằng điện giải thì rất ít. ',
       img:
         'https://5.imimg.com/data5/VL/DS/BM/GLADMIN-259611/decmax-dexamethasone-tablet.jpg',
-      time: '12:00',
-      Frequency: 'Thứ 7, chủ nhật',
+      time: [
+        {hours: 6, minutes: 23},
+        {hours: 9, minutes: 45},
+        {hours: 4, minutes: 45},
+      ],
+      frequency: [
+        {name: 'Thứ 2', stt: false, name2: 'Th2'},
+        {name: 'Thứ 3', stt: false, name2: 'Th3'},
+        {name: 'Thứ 4', stt: true, name2: 'Th4'},
+        {name: 'Thứ 5', stt: true, name2: 'Th5'},
+        {name: 'Thứ 6', stt: false, name2: 'Th6'},
+        {name: 'Thứ 7', stt: true, name2: 'Th7'},
+        {name: 'Chủ nhật', stt: false, name2: 'CN'},
+      ],
     },
   ]);
   const closeRow = (rowMap: any, rowKey: any) => {
@@ -76,6 +108,8 @@ function Detail({navigation}: any) {
     newData.splice(prevIndex, 1);
     setarrayNote(newData);
   };
+
+  function onchangeValue(val: any) {}
   return (
     <View style={[stylesGlobal.container]}>
       <View
@@ -128,29 +162,24 @@ function Detail({navigation}: any) {
                       </View>
                       <View style={{width: '80%'}}>
                         <Title>{data.item.name}</Title>
-                        {/* <Text>
-                          <Text style={{fontWeight: 'bold'}}>Thành phần</Text>:{' '}
-                          {data.item.Ingredient}{' '}
-                        </Text>
-                        <Text>
-                          <Text style={{fontWeight: 'bold'}}>Công dụng</Text>:{' '}
-                          {data.item.func}{' '}
-                        </Text>
-                        <Text>
-                          <Text style={{fontWeight: 'bold'}}>Cách dùng</Text>:{' '}
-                          {data.item.usage}{' '}
-                        </Text> */}
 
                         <Text>
                           <Text style={{fontWeight: 'bold'}}>
                             Thời gian uống:{' '}
                           </Text>
-                          {data.item.time}
+                          {data.item.time?.map((val) => (
+                            <Text>
+                              {val.hours}:{val.minutes}
+                              {' | '}
+                            </Text>
+                          ))}
                         </Text>
 
                         <Text>
                           <Text style={{fontWeight: 'bold'}}>Tần suất: </Text>
-                          {data.item.Frequency}
+                          {data.item.frequency?.map((val) =>
+                            val.stt ? <Text>{val.name2}, </Text> : null,
+                          )}
                         </Text>
                       </View>
                     </View>
@@ -167,8 +196,17 @@ function Detail({navigation}: any) {
                     stylesPrescription.backLeftBtn,
                     stylesPrescription.card_content,
                   ]}
-                  onPress={() => deleteRow(rowMap, data.item.id)}>
-                  <MaterialIcons name="delete" size={28} color="red" />
+                  // onPress={() => deleteRow(rowMap, data.item.id)}
+                >
+                  <AddEditTime
+                    label="Thêm vào đơn"
+                    onchangeValue={(value: any) => console.log(value)}
+                    value={{
+                      time: data.item.time,
+                      frequency: data.item.frequency,
+                    }}
+                    iconButton="build"
+                  />
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -191,7 +229,7 @@ function Detail({navigation}: any) {
           icon="plus"
           actions={[]}
           onPress={() => {
-            navigate.navigate('addMedicine');
+            navigate.navigate('addMedicineEditPrescroption');
           }}
         />
       </View>

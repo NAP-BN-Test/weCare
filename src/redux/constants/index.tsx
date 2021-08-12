@@ -25,9 +25,11 @@ export type LOGOUT = typeof LOGOUT;
 export const LISTMEDICINE = 'LISTMEDICINE';
 export const DELET_ITEM_MEDICINE = 'DELET_ITEM_MEDICINE';
 export const ADDMEDICINE = 'ADDMEDICINE';
+export const EDITMEDICINE = 'EDITMEDICINE';
 export const NEWLISTMEDICINE = 'NEWLISTMEDICINE';
 //Type contact Screen
 export type LISTMEDICINE = typeof LISTMEDICINE;
 export type DELET_ITEM_MEDICINE = typeof DELET_ITEM_MEDICINE;
 export type ADDMEDICINE = typeof ADDMEDICINE;
+export type EDITMEDICINE = typeof EDITMEDICINE;
 export type NEWLISTMEDICINE = typeof NEWLISTMEDICINE;

@@ -1,50 +1,19 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Modal,
-  TouchableOpacity,
-  Switch,
-} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import moment from 'moment';
+import React, {useEffect, useState} from 'react';
+import {Overlay} from 'react-native-elements/dist/overlay/Overlay';
 import {ListItem} from 'react-native-elements';
 import TouchableScale from 'react-native-touchable-scale';
-import TimePickerPage from '../../../components/TimePicker/TimePicker';
-import {Overlay} from 'react-native-elements/dist/overlay/Overlay';
-import {Button} from 'react-native-paper';
-import BaseIcon from '../../../components/IconBase/IconBase';
-import moment from 'moment';
-import Chevron from '../../Profile/ProfilePersonal/Chevron';
-function AddMedicineSearch({route, navigation}: any) {
-  // console.log('route', route);
-  const [arrayNote, setarrayNote] = useState([
-    {
-      id: '1',
-      date: '01/02/2021',
-      title: 'Đơn số 1',
-    },
-
-    {
-      id: '2',
-      date: '01/02/2021',
-      title: 'Đơn số 2',
-    },
-
-    {
-      id: '3',
-      date: '01/02/2021',
-      title: 'Đơn số 3',
-    },
-
-    {
-      id: '4',
-      date: '01/02/2021',
-      title: 'Đơn số 4',
-    },
-  ]);
+import {Switch, Text, TouchableOpacity, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import TimePickerPage from '../TimePicker/TimePicker';
+import BaseIcon from '../IconBase/IconBase';
+import Chevron from '../../screens/Profile/ProfilePersonal/Chevron';
+import {Button, Colors, IconButton} from 'react-native-paper';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+function AddEditTime({label, onchangeValue, value, iconButton}: any) {
   const [arrTime, setarrTime] = useState([] as any);
+  const [visible, setVisible] = useState(false);
+  const [visible2, setVisible2] = useState(false);
   const [arrRank, setarrRank] = useState([
     {name: 'Thứ 2', stt: false, name2: 'Th2'},
     {name: 'Thứ 3', stt: false, name2: 'Th3'},
@@ -54,95 +23,29 @@ function AddMedicineSearch({route, navigation}: any) {
     {name: 'Thứ 7', stt: false, name2: 'Th7'},
     {name: 'Chủ nhật', stt: false, name2: 'CN'},
   ]);
-  console.log('arrTime', arrTime);
 
-  function EditValueTime(value: any) {
-    console.log('value edit', value);
-    const newData = arrTime;
-    console.log('newData trên', newData);
-    const prevIndex = arrTime.findIndex((item: any) => item.key === value.key);
-    console.log('Vị trí', prevIndex);
-    newData[prevIndex].hours = value.hours;
-    newData[prevIndex].key = value.key;
-    newData[prevIndex].minutes = value.minutes;
-    console.log('newData dưới', newData);
+  useEffect(() => {
+    if (value?.time != undefined) {
+      setarrTime(value.time);
+    }
 
+    if (value?.frequency != undefined) {
+      setarrRank(value.frequency);
+    }
+  }, [value]);
+
+  function deleteTime(i: any) {
+    const newData = [...arrTime];
+    newData.splice(i, 1);
     setarrTime(newData);
   }
 
   function setFieldValueTime(value: any) {
     console.log('value', value);
-    setarrTime((oldArray: any) => [
-      ...oldArray,
-      {
-        ...value,
-        key: moment(new Date()).format('YYMMDDHHmmss').toString(),
-      },
-    ]);
-  }
-  const [visible, setVisible] = useState(false);
-  const [visible2, setVisible2] = useState(false);
-
-  const toggleOverlay = (id: any) => {
-    setVisible(!visible);
-    console.log(id);
-  };
-
-  function deleteTime(key: any) {
-    const newData = [...arrTime];
-    const prevIndex = arrTime.findIndex((item: any) => item.key === key);
-    newData.splice(prevIndex, 1);
-    setarrTime(newData);
+    setarrTime((oldArray: any) => [...oldArray, value]);
   }
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={{paddingHorizontal: 20}}>
-        <View style={styles.Itemfooter}>
-          <View style={{width: '30%'}}>
-            <Text style={{fontWeight: 'bold'}}>Tên thuốc:</Text>
-          </View>
-
-          <View style={{width: '70%'}}>
-            <Text style={{color: 'gray'}}>{route.params.item.name}</Text>
-          </View>
-        </View>
-
-        <View style={styles.Itemfooter}>
-          <View style={{width: '30%'}}>
-            <Text style={{fontWeight: 'bold'}}>Ảnh:</Text>
-          </View>
-
-          <View style={{width: '70%'}}>
-            <Image
-              style={{height: 60, width: 60}}
-              source={{
-                uri: route.params.item.img,
-              }}
-            />
-          </View>
-        </View>
-      </View>
-      <View style={{flexDirection: 'column'}}>
-        <View style={[{marginVertical: 10, paddingHorizontal: 20}]}>
-          <Text style={{fontWeight: 'bold'}}>Chọn đơn thuốc: </Text>
-        </View>
-      </View>
-
-      <View>
-        {arrayNote.map((l, i) => (
-          <ListItem
-            key={i}
-            bottomDivider
-            Component={TouchableScale}
-            onPress={() => toggleOverlay(l.id)}>
-            <ListItem.Content>
-              <ListItem.Title>{l.title}</ListItem.Title>
-              <ListItem.Subtitle>{l.date}</ListItem.Subtitle>
-            </ListItem.Content>
-          </ListItem>
-        ))}
-      </View>
-
+    <View>
       <Overlay
         // ModalComponent={Modal}
         animationType="slide"
@@ -177,9 +80,10 @@ function AddMedicineSearch({route, navigation}: any) {
                 />
               </TouchableOpacity> */}
 
-              <TouchableOpacity onPress={() => deleteTime(item.key)}>
+              <TouchableOpacity onPress={() => deleteTime(i)}>
                 {/* <Button>Xóa</Button> */}
                 <BaseIcon
+                  onPress={() => deleteTime(i)}
                   containerStyle={{backgroundColor: '#FAD291'}}
                   icon={{
                     type: 'font-awesome',
@@ -213,7 +117,10 @@ function AddMedicineSearch({route, navigation}: any) {
               <Button
                 mode="contained"
                 // disabled={!isFormValid(isValid, touched)}
-                onPress={() => setVisible(!visible)}>
+                onPress={() => {
+                  onchangeValue({arrRank, arrTime});
+                  setVisible(!visible);
+                }}>
                 Lưu
               </Button>
             </View>
@@ -236,7 +143,7 @@ function AddMedicineSearch({route, navigation}: any) {
         isVisible={visible2}
         // onBackdropPress={toggleOverlay}
       >
-        {arrRank?.map((item) => (
+        {arrRank?.map((item, i) => (
           <ListItem key={1} bottomDivider>
             {/* <BaseIcon
               containerStyle={{backgroundColor: '#FAD291'}}
@@ -252,10 +159,10 @@ function AddMedicineSearch({route, navigation}: any) {
             <Switch
               onValueChange={() => {
                 const newData = [...arrRank];
-                const prevIndex = arrRank.findIndex(
-                  (items: any) => items.name2 === item.name2,
-                );
-                newData[prevIndex].stt = !item.stt;
+                // const prevIndex = arrRank.findIndex(
+                //   (items: any) => items.name2 === item.name2,
+                // );
+                newData[i].stt = !item.stt;
                 setarrRank(newData);
               }}
               value={item.stt}
@@ -303,19 +210,11 @@ function AddMedicineSearch({route, navigation}: any) {
                   ]);
                 }
 
-                setVisible2(!visible2)
+                setVisible2(!visible2);
               }}>
               All
             </Button>
           </View>
-          {/* <View style={{width: '30%', padding: 10}}>
-            <Button
-              mode="contained"
-              // disabled={!isFormValid(isValid, touched)}
-              onPress={() => setVisible2(!visible2)}>
-              OK
-            </Button>
-          </View> */}
 
           <View style={{width: '45%', padding: 10}}>
             <Button
@@ -327,16 +226,18 @@ function AddMedicineSearch({route, navigation}: any) {
           </View>
         </View>
       </Overlay>
-    </ScrollView>
+      {iconButton?.length > 0 ? (
+        <MaterialIcons
+          name={iconButton}
+          size={28}
+          color="red"
+          onPress={() => setVisible(!visible)}
+        />
+      ) : (
+        <Button onPress={() => setVisible(!visible)}>{label}</Button>
+      )}
+    </View>
   );
 }
 
-export default AddMedicineSearch;
-const styles = StyleSheet.create({
-  Itemfooter: {
-    flexDirection: 'row',
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-  },
-});
+export default AddEditTime;

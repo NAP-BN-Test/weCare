@@ -7,12 +7,11 @@ import ImagePicker from '../../../components/ImagePicker/ImagePicker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Image} from 'react-native';
 import SearchDropDown from '../../../components/SearchDropDown/SearchDropDown';
-import Toast from 'react-native-simple-toast';
-import {Avatar} from 'react-native-paper';
-import {ActionScreen} from '../../../redux/actions/actions.screen/action.screen';
+
 import {useDispatch} from 'react-redux';
+import ItemSearchMedicine from './ItemSearchMedicine';
 // import {RNCamera} from 'react-native-camera';
-function AddMedicine({navigation}: any) {
+function AddMedicine({toggleValueAdd}: any) {
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
   const [selectedItems, setselectedItems] = useState([] as any);
@@ -96,36 +95,9 @@ function AddMedicine({navigation}: any) {
     }
   };
 
-  const onPressSearchDropDown = (item: any) => {
-    console.log('item', item);
-
-    // let arrayOld = selectedItems;
-    // arrayOld.push(item);
-    // console.log('arrayOld', arrayOld);
-
-    // setselectedItems(arrayOld);
-    // setselectedItems([item]);
-    let index = selectedItems.findIndex((values: any) => values.id === item.id);
-
-    if (index >= 0) {
-      Toast.showWithGravity('Thuốc đã tồn tại trong đơn', 3000, Toast.TOP);
-    } else {
-      Toast.showWithGravity(
-        'Đã thêm thuốc ' + item.name + ' vào danh sách',
-        500,
-        Toast.TOP,
-      );
-      setselectedItems((oldArray: any) => [...oldArray, item]);
-    }
-  };
-
-  const onSelectedItemsChange = (value: any) => {
-    // setselectedItems(value);
-  };
-
-  const deleteItems = (items: any) => {
-    setselectedItems(selectedItems.filter((item: any) => item.id !== items.id));
-  };
+  function toggleValue(value: any) {
+    toggleValueAdd(value);
+  }
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -167,63 +139,7 @@ function AddMedicine({navigation}: any) {
               </View>
             </View>
 
-            {searching && (
-              <SearchDropDown
-                onPressSearchDropDown={onPressSearchDropDown}
-                dataSource={filtered}
-                
-              />
-            )}
-
-            <View style={{flexDirection: 'column'}}>
-              <View style={[stylesGlobal.row_center, {marginVertical: 10}]}>
-                <Text style={{fontWeight: 'bold'}}>
-                  Danh sách thuốc đã chọn
-                </Text>
-              </View>
-            </View>
-
-            {selectedItems.length > 0 ? (
-              selectedItems.map((items: any, index: any) => (
-                <View key={items.id} style={{marginBottom: 5}}>
-                  <Chip
-                    avatar={
-                      <Image
-                        style={{height: 50, width: 50}}
-                        source={{
-                          uri: items.img,
-                        }}
-                      />
-                    }
-                    style={{backgroundColor: '#fff', height: 50}}
-                    mode="outlined"
-                    onClose={() => deleteItems(items)}>
-                    {items.name}
-                  </Chip>
-                </View>
-              ))
-            ) : (
-              <View>
-                <Chip
-                  style={{backgroundColor: '#fff'}}
-                  mode="outlined"
-                  // onClose={() => console.log('đóng')}
-                >
-                  Chưa chọn thuốc nào!
-                </Chip>
-              </View>
-            )}
-
-            <Button
-              mode="contained"
-              style={{marginTop: 10}}
-              // disabled={!isFormValid(isValid, touched)}
-              onPress={() => {
-                navigation.goBack();
-                dispatch(ActionScreen.act_ADD_Medicine(selectedItems));
-              }}>
-              Thêm
-            </Button>
+            {searching && <ItemSearchMedicine toggleValue={toggleValue} />}
           </View>
 
           <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />

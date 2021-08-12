@@ -6,7 +6,6 @@ import Menu from '../../screens/Menu/Menu.creens';
 import TabHomeNavigation from '../TabNavigation/TabHomeNavigation';
 import Detail from '../../screens/Prescription/Detail/Detail.screen';
 import Hearder from '../../components/Hearders/Hearder';
-import AddMedicine from '../../screens/Prescription/Detail/AddMedicine.screen';
 import {Text} from 'react-native';
 import AddPrescription from '../../screens/Prescription/AddPrescription.screen';
 import ListMedicine from '../../screens/Prescription/Detail/ListMedicine.screen';
@@ -18,6 +17,8 @@ import Form from '../../screens/Profile/FormProfile/form';
 import ProfilePersonal from '../../screens/Profile/ProfilePersonal/ProfilePersonal';
 import DetailFamily from '../../screens/Prescription/DetailFamily/DetailFamily.screen';
 import AddMedicineSearch from '../../screens/Search/AddMedicine/AddMedicineSearch';
+import AddMedicineEditPrescroption from '../../screens/Prescription/Detail/AddMedicineEditPrescroption.screen';
+import AddMedicineAddPrescroption from '../../screens/Prescription/Detail/AddMedicineAddPrescroption.screen';
 const MainStack = createStackNavigator();
 
 const MainStackScreen = () => {
@@ -91,7 +92,7 @@ const MainStackScreen = () => {
       />
 
       <MainStack.Screen
-        name="addMedicine"
+        name="addMedicineEditPrescroption"
         options={{
           title: 'Thêm thuốc',
           headerStyle: {
@@ -105,7 +106,25 @@ const MainStackScreen = () => {
           // headerRight: ()=> <Text>abc</Text>
           // headerTransparent: true,
         }}
-        component={AddMedicine}
+        component={AddMedicineEditPrescroption}
+      />
+
+      <MainStack.Screen
+        name="addMedicineAddPrescroption"
+        options={{
+          title: 'Thêm thuốc',
+          headerStyle: {
+            backgroundColor: '#6000ec',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            // fontWeight: 'bold',
+          },
+          // headerRight: ()=> <Text>abc</Text>
+          // headerTransparent: true,
+        }}
+        component={AddMedicineAddPrescroption}
       />
 
       <MainStack.Screen

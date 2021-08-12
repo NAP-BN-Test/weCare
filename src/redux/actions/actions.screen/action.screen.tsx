@@ -7,6 +7,13 @@ function act_ADDMedicine(value: any) {
   };
 }
 
+function act_EDITMedicine(value: any) {
+  return {
+    type: constants.EDITMEDICINE,
+    value: value,
+  };
+}
+
 function act_New_List_Medicine(value: any) {
   return {
     type: constants.NEWLISTMEDICINE,
@@ -27,10 +34,17 @@ function act_ADDNEWLIST_Medicine(list: any) {
   };
 }
 
-function act_ADD_Medicine(list: any) {
+function act_ADD_Medicine(value: any) {
   return (dispatch: any) => {
-    dispatch(act_ADDMedicine(list));
+    dispatch(act_ADDMedicine(value));
     dispatch(Action.act_alert_success('Thêm thành công vào danh sách'));
+  };
+}
+
+function act_EDIT_Medicine(value: any) {
+  return (dispatch: any) => {
+    dispatch(act_EDITMedicine(value));
+    dispatch(Action.act_alert_success('Sửa thành công'));
   };
 }
 
@@ -42,6 +56,7 @@ function act_Delete_Item_listMedicine(items: any) {
 }
 
 export const ActionScreen = {
+  act_EDIT_Medicine,
   act_ADD_Medicine,
   act_Delete_Item_listMedicine,
   act_ADDNEWLIST_Medicine,

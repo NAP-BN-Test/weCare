@@ -19,7 +19,7 @@ function AddPrescription({navigation}: any) {
   // console.log('params',params);
 
   return (
-    <View style={[stylesGlobal.container,{backgroundColor: '#fff'}]}>
+    <View style={[stylesGlobal.container, {backgroundColor: '#fff'}]}>
       <View style={stylesGlobal.footer}>
         <Formik
           initialValues={{
@@ -106,7 +106,7 @@ function AddPrescription({navigation}: any) {
           {
             icon: 'plus',
             label: 'Thêm thuốc',
-            onPress: () => navigate.navigate('addMedicine'),
+            onPress: () => navigate.navigate('addMedicineAddPrescroption'),
           },
           {
             icon: 'content-paste',
