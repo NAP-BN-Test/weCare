@@ -21,6 +21,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {number} from 'yup/lib/locale';
 import BtnPlus from '../../components/Btn/BtnPlusCompent';
 import BtnPluss from '../../components/Btn/btnPlusCompents';
+import PushNotification from 'react-native-push-notification';
 const wait = (timeout: any) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
@@ -107,6 +108,34 @@ function Home() {
     newData.splice(prevIndex, 1);
     setarrayNote(newData);
   };
+
+  
+
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+  const [bellTime, setBellTime] = useState('1');
+  const setTaskAlarm = () => {
+    // PushNotification.cancelAllLocalNotifications();
+    PushNotification.localNotificationSchedule({
+      channelId: 'task-channel',
+      title: "test",
+      message: "Thông báo nổi dc r =))",
+      date: new Date(Date.now() + parseInt("1") * 60 * 1000),
+      allowWhileIdle: true,
+      soundName: "my_sound.mp3",
+    });
+    console.log('OK')
+  };
+
+  const handlerNoti = () =>{
+    PushNotification.localNotification({
+        channelId: 'task-channel',
+        title: "test",
+        message: "Thông báo ok =))",
+        soundName: "my_sound.mp3",
+        
+    });
+}
   return (
     <View
       style={[
@@ -184,12 +213,12 @@ function Home() {
             {
               icon: 'plus',
               label: 'Add',
-              onPress: () => console.log('Pressed add'),
+              onPress: () => setTaskAlarm(),
             },
             {
               icon: 'star',
               label: 'Star',
-              onPress: () => console.log('Pressed star'),
+              onPress: () => handlerNoti(),
             },
             {
               icon: 'email',

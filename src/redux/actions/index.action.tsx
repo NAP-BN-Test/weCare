@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import * as constants from '../constants';
 import auth from '@react-native-firebase/auth';
-
+import PushNotification from 'react-native-push-notification';
 function act_alert_success(messages: string) {
   return {
     type: constants.ALERT_SUCCESS,
@@ -37,6 +37,15 @@ function act_login(numberphone: any, password: any) {
   return (dispatch: any) => {
     if (body.numberphone === tk.numberphone && body.password === tk.password) {
       console.log('Đăng nhập thành công');
+      PushNotification.createChannel(
+        {
+          channelId: 'task-channel', // (required)
+          channelName: 'Task Channel', // (required)
+          soundName: 'my_sound.mp3', // (optional) See `soundName` parameter of `localNotification` function
+        
+        },
+        (created) => console.log(`createChannel returned '${created}'`), // (optional) callback returns whether the channel was created, false means it already existed.
+      );
       let user: any = {
         userinfo: {
           name: '',
@@ -44,8 +53,7 @@ function act_login(numberphone: any, password: any) {
           address: '',
           numberphone: '0123456789',
           gender: 'Nam',
-          avatar:
-            '',
+          avatar: '',
         },
         accesstoken: '12345678',
         permisson: 'admin',
